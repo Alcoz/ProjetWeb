@@ -56,7 +56,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		biensResearch(db, req.query);
 	});
 
-	app.post('/biensAjout/' (req, res) =>{
+	app.post('/biensAjout/', (req, res) =>{
 		inscription(db, req.query);
 	});
 

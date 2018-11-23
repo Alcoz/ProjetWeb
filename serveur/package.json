@@ -15,5 +15,8 @@
     "fs": "0.0.1-security",
     "mongodb": "^3.1.9",
     "split": "^1.0.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^7.0.6"
   }
 }
