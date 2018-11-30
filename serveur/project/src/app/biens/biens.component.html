@@ -1,3 +1,6 @@
+<input #box (keyup)="onKey(box.value)">
+
+
 <ul>
 	<li *ngFor="let bien of biens">{{bien.nom}}</li>
 </ul>

@@ -10,15 +10,21 @@ import { BiensService } from './biens.service';
 export class BiensComponent implements OnInit {
 
   private biens : Object[];
+  value = '';
 
   constructor(private service : BiensService) { }
 
-  ngOnInit() {
-  	this.service.getBiens().subscribe(res => {
-  	this.biens = res;
-  	console.log(this.biens);
-  	});
+  onKey(values) {
+    this.value = values;
+    console.log(this.value);
+    this.service.getBiens(this.value).subscribe(res => {
+    this.biens = res;
+    
+    });
 
+  }
+
+  ngOnInit() {
   }
 
 }

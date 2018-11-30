@@ -59,13 +59,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
+		console.log(req.query);
 		console.log("route: /biens");
 		db.collection("biens").find().toArray((err, documents)=> {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
 			let json = [];
 			for (let doc of documents) {
-				console.log(doc);
 				json.push(doc);
 			};
 			res.setHeader("Content-type", "application/json");
