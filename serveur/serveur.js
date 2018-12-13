@@ -7,7 +7,8 @@ var url = "mongodb://localhost:27017";
 
 var biensResearch = function(db, filtre){
 	app.get('/biens/', (req, res) => {
-		console.log("route: /biens/");
+		//console.log("route: /biens/");
+		console.log("req.query");
 		db.collection("biens").find(filtre).toArray((err, documents)=> {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
@@ -60,8 +61,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		console.log(req.query);
-		console.log("route: /biens");
-		db.collection("biens").find().toArray((err, documents)=> {
+		db.collection("biens").find(req.query).toArray((err, documents)=> {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
 			let json = [];
@@ -73,11 +73,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
-	app.post('/biens/', (req, res) => {
-		biensResearch(db, req.query);
+	app.post('/biens', (req, res) => {
+		//console.log("sqsqfsqfsqf");
+		//biensResearch(db, req.query);
 	});
 
 	app.post('/biensAjout/', (req, res) =>{
+
 		inscription(db, req.query);
 	});
 

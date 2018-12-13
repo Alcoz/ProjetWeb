@@ -16,11 +16,11 @@ export class BiensService implements OnInit {
 
   constructor(private http : HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  getBiens(String param):Observable<any>{
-  		return this.http.get(this.url +'?'+ param);
+  getBiens(param : string):Observable<any>{
+      console.log(this.url + "?nom=" + param);
+  		return this.http.get<any>(this.url + "?nom=" + param);
   }
 
 }
