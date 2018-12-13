@@ -6,51 +6,6 @@ var assert = require("assert");
 var url = "mongodb://localhost:27017";
 var querystring = require('querystring');
 
-var inscription = function(db, tuple){
-	db.collection("membres").insertOne(tuple);
-}
-
-var biensResearch = function(db, filtre){
-	app.get('/biens/', (req, res) => {
-		//console.log("route: /biens/");
-		console.log("req.query");
-		db.collection("biens").find(filtre).toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			let json = [];
-			for (let doc of documents) {
-				console.log(doc);
-				json.push(doc);
-			};
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
-		});
-	});
-};
-
-var biensInsert = function(db, tuple){
-	db.collection("biens").insertOne(tuple);
-};
-
-var membresResearch = function(db, filtre){
-	app.get('/membres/', (req, res) => {
-		console.log("route: /biens/");
-		db.collection("biens").find(filtre).toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			let json = [];
-			for (let doc of documents) {
-				console.log(doc);
-				json.push(doc);
-			};
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
-		});
-	});
-};
-
-
-
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	let db = client.db("TROC");
 	assert.equal(null, err);
@@ -70,6 +25,93 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		}
 	});
 
+	//Fonctions rapport au biens
+	app.get('/biens', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+
+		console.log(req.query["nom"]);
+		db.collection("biens")
+		.find({"nom": new RegExp(req.query["nom"], "i")})
+		.toArray((err, documents)=> {
+			 // la création de json ne sert à rien ici
+			 // on pourrait directement renvoyer documents
+			console.log(req.query);
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
+	app.get('/biensAjout', (req, res) => {
+		if(db.collection("membres").find(req.query).count()===0){
+			db.collection("biens").insertOne(req.query);
+			console.log("Ajout réussi");
+		} else {
+			console.log("Ce bien existe déjà");
+		}
+	});
+
+	app.get('/biensSupp', (req, res) => {
+		console.log({"idbien": parseInt(req.query["idBien"])});
+		db.collection("biens").updateOne({"idBien": parseInt(req.query["idBien"])}, {$set: {"Actif": 0}});
+
+		db.collection("biens")
+		.find()
+		.toArray((err, documents)=> {
+			 // la création de json ne sert à rien ici
+			 // on pourrait directement renvoyer documents
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
+	//Fonctions rapport au service
+	app.get('/service', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+
+		console.log(req.query["nom"]);
+		db.collection("service")
+		.find({"nom": new RegExp(req.query["nom"], "i")})
+		.toArray((err, documents)=> {
+			 // la création de json ne sert à rien ici
+			 // on pourrait directement renvoyer documents
+			console.log(req.query);
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
+	app.get('/serviceAjout', (req, res) => {
+		if(db.collection("membres").find(req.query).count()===0){
+			db.collection("service").insertOne(req.query);
+			console.log("Ajout réussi");
+		} else {
+			console.log("Ce bien existe déjà");
+		}
+	});
+
+	app.get('/serviceSupp', (req, res) => {
+		db.collection("service").updateOne({"idServ": parseInt(req.query["idServ"])}, {$set: {"Actif": 0}});
+	});
+
+	app.get('/emprunt', (req, res) => {
+		if(db.collection("biens").find(req.query))
+	});
+	/*
 	app.get('/biensRecents', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens").find().toArray((err, documents)=> {
@@ -80,34 +122,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.setHeader("Content-type", "application/json");
 			res.end(JSON.stringify(json));
 		});
-	});
-
-	app.get('/biens', (req, res) => {
-		res.setHeader("Access-Control-Allow-Origin", "*");
-
-
-
-		db.collection("biens").find(req.query).toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			console.log(req.query);
-			let json = [];
-			for (let doc of documents) {
-				json.push(doc);
-			};
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
-		});
-	});
-	/*
-	app.post('/biens', (req, res) => {
-		//console.log("sqsqfsqfsqf");
-		//biensResearch(db, req.query);
-	});
-
-	app.post('/biensAjout/', (req, res) =>{
-
-		inscription(db, req.query);
 	});
 
 

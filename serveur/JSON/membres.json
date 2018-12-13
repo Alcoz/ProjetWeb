@@ -1,19 +1,19 @@
 [
 	{
 		"mail" : "baptiste-darnala@hotmail.fr",
-		"MDP" : "123456",		
+		"MDP" : "123456",
 		"nom" : "Darnala",
 		"prénom" : "Baptiste",
-		"role" : "Admin",
+		"Admin" : 1,
 		"ville" : "Montpellier"
-		
+
 	},
 	{
 		"mail" : "Dupont-Laurent@gmail.com",
-		"MDP" : "arbre",		
+		"MDP" : "arbre",
 		"nom" : "Dupont",
 		"prénom" : "Laurent",
-		"role" : "Membre",
+		"Admin" : 0,
 		"ville" : "Montpellier"
 	},
 	{
@@ -21,7 +21,7 @@
 		"MDP" : "voiture",
 		"nom" : "Porto",
 		"prénom" : "Dylan",
-		"role" : "Membre",
+		"Admin" : 0,
 		"ville" : "Paris"
 	}
 ]

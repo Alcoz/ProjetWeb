@@ -4,7 +4,9 @@
 	  "nom": "Marteau",
 	  "descriptif": "Bon marteau",
 	  "lienPhoto": "assets/img/logo.png",
-	  "prixNeuf": 20 },
+	  "prixNeuf": 20,
+		"Actif": 1
+	},
 	{ "_id": "5bf679b38aafe18495a4093f",
 	  "idBien": 2,
 	  "nom": "BMW serie 3",
