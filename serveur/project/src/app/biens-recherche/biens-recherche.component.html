@@ -1,0 +1,61 @@
+<nav class="navbar navbar-inverse navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" routerLink="/accueil">
+        <!--<img src="assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">-->
+        ShareWood
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/accueil">Accueil</a></li>
+      <li class="active"><a routerLink="/recherche">Recherche</a></li>
+      <li><a href="http://localhost:4200/enregistrer">S'enregistrer</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h3>Navbar Forms</h3>
+  <p>Use the .navbar-form class to vertically align form elements (same padding as links) inside the navbar.</p>
+  <p>The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".</p>
+  <p>The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:</p>
+  <br/><br/>
+</div>
+
+<div class="container-fluid">
+	<div class="row centered">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-2">
+			<input #box (keyup)="onKey(box.value)">
+		</div>
+		<div class="col-lg-2">
+			<div class="form-check">
+		    	<input type="checkbox" class="form-check-input" id="lesBiens">
+		    	<label class="form-check-label" for="lesBiens"> Biens</label>
+			</div>
+			<div class="form-check">
+		    	<input type="checkbox" class="form-check-input" id="lesServices">
+		    	<label class="form-check-label" for="lesServices"> Services</label>
+		  	</div>
+		</div>
+	</div>
+</div>
+
+<h3>Résultats :</h3>
+<div class="list-group">
+  <div class="row" *ngFor="let bien of biens">
+  	<a href="#" class="list-group-item list-group-item-action">
+		<div class="col-lg-3">
+			<img src="assets/img/logo.png" width="150" height="150" class="d-inline-block align-top" alt="">
+		</div>
+		<div class="col-lg-3">
+			<div class="row">Nom : {{bien.nom}}</div>
+			<div class="row"> Prix : {{bien.prixNeuf}} €</div>
+		</div>
+		<div class="col-lg-6">
+			{{bien.descriptif}}
+		</div>
+	</a>
+  </div>
+</div>

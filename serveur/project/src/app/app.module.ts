@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BiensComponent } from './biens/biens.component';
 import { BiensService } from './biens/biens.service';
+import { BiensRechercheComponent } from './biens-recherche/biens-recherche.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BiensComponent
+    BiensComponent,
+    BiensRechercheComponent
   ],
   imports: [
     BrowserModule,
