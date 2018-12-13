@@ -25,6 +25,8 @@ export class BiensComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service.getBiensRecents().subscribe(res => {
+    this.biens = res;});
   }
 
 }

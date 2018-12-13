@@ -12,15 +12,18 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class BiensService implements OnInit {
 
-  private url = 'http://localhost:8888/biens';
+  private url = 'http://localhost:8888/';
 
   constructor(private http : HttpClient) { }
 
   ngOnInit() {}
 
   getBiens(param : string):Observable<any>{
-      console.log(this.url + "?nom=" + param);
-  		return this.http.get<any>(this.url + "?nom=" + param);
+  		return this.http.get<any>(this.url + "biens?nom=" + param);
+  }
+
+  getBiensRecents():Observable<any>{
+      return this.http.get<any>(this.url + "biensRecents");
   }
 
 }

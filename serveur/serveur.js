@@ -58,6 +58,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		next();
 	});
 
+	app.get('/biensRecents', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("biens").find().toArray((err, documents)=> {
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
 	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		console.log(req.query);

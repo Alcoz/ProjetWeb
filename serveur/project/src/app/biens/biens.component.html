@@ -1,6 +1,19 @@
-<input #box (keyup)="onKey(box.value)">
+<h3>Liste des derniers ajouts</h3>
+<div class="list-group">
+  <div class="row" *ngFor="let bien of biens">
+  	<a href="#" class="list-group-item list-group-item-action">
+		<div class="col-lg-3">
+			<img src="assets/img/logo.png" width="150" height="150" class="d-inline-block align-top" alt="">
+		</div>
+		<div class="col-lg-3">
+			<div class="row">Nom : {{bien.nom}}</div>
+			<div class="row"> Prix : {{bien.prixNeuf}} €</div>
+		</div>
+		<div class="col-lg-6">
+			{{bien.descriptif}}
+		</div>
+	</a>
+  </div>
+</div>
 
-
-<ul>
-	<li *ngFor="let bien of biens">{{bien.nom}}</li>
-</ul>
+<!--<input #box (keyup)="onKey(box.value)">-->
