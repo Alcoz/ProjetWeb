@@ -20,25 +20,32 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.post('/register', (req, res) => {
-		console.log("test");
-		if(db.collection("membres").find(req.query["mail"]).count()===0){
-			db.collection("membres").insertOne(req.query);
-			res.send("Inscrit");
-		} else {
-			res.send('Déjà inscrit');
-			console.log("Déjà inscrit");
-		}
+		db.collection("membres").find({"mail": req.query["mail"]}).count()
+	 	.then(function(numItems) {
+			if(numItems===0){
+				db.collection("membres").insertOne(req.query);
+				res.send("Inscrit");
+			} else {
+				res.send('Déjà inscrit');
+				console.log("Déjà inscrit");
+			}
+	 })
 	});
 
 	app.post('/connexion', (req, res) => {
-		console.log("connexion");
 		console.log(req.query);
-		if(db.collection("membres").find(req.query["mail"], req.query["mdp"]).count() === 1){
-			console.log("Connecter");
-		} else {
-			console.log("T'existe pas lol");
-		}
-	})
+		db.collection("membres").find({"mail": req.query["mail"]}).count()
+		.then(function(numItems){
+			if(numItems===1){
+				console.log("Connecter");
+				//res.send('Connecter');
+			}else{
+				console.log("Pas de compte");
+				//res.send('Pas de compte');
+			}
+		})
+	});
+
 	//Fonctions rapport au biens
 	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
