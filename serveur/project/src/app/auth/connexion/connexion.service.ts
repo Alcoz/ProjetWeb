@@ -24,6 +24,7 @@ export class ConnexionService {
 	};
 
 	console.log(infos.mail);
-  return this.http.post<any>(this.url + "connexion?mail=" + infos.mail + "&mdp=" + "infos.mdp", JSON.stringify(infos), httpOptions);
+	console.log(infos.mdp);
+  	return this.http.post<any>(this.url + "connexion?mail=" + infos.mail + "&mdp=" + infos.mdp, JSON.stringify(infos), httpOptions);
   }
 }

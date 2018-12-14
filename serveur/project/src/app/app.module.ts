@@ -14,6 +14,7 @@ import { AjoutBienComponent } from './ajout-bien/ajout-bien.component';
 import { AuthComponent } from './auth/auth.component';
 import { ConnexionComponent } from './auth/connexion/connexion.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterComponent } from './auth/register/register.component';
     AjoutBienComponent,
     AuthComponent,
     ConnexionComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

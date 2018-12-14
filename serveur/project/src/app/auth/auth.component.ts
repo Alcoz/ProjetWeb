@@ -8,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class AuthComponent implements OnInit {
 
+  private isLoggedIn : boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  connexion() {
+  	this.isLoggedIn = true;
   }
 
 }

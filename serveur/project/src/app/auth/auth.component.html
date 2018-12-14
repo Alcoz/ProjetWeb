@@ -1,19 +1,4 @@
-<nav class="navbar navbar-inverse navbar-dark bg-primary">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-toggler-icon"></span>
-      <a class="navbar-brand" routerLink="/accueil">
-        <!--<img src="assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">-->
-        ShareWood
-      </a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a routerLink="/accueil">Accueil</a></li>
-      <li><a routerLink="/recherche">Recherche</a></li>
-      <li class="active"><a routerLink="/register">S'enregistrer</a></li>
-    </ul>
-  </div>
-</nav>
+<app-header></app-header>
 
 <div *ngIf="!isLoggedIn" class="container-fluid">
   <div class="row">

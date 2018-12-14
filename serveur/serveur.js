@@ -55,6 +55,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				//res.send('Connecter');
 			}else{
 				let json = [];
+				res.setHeader("Content-type", "application/json");
 				res.end(JSON.stringify(json));
 				//res.send('Pas de compte');
 			}

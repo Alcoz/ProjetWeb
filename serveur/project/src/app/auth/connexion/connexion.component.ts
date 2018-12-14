@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConnexionService } from './connexion.service';
+import { AuthComponent } from '../auth.component'
 
 @Component({
   selector: 'app-connexion',
@@ -10,9 +11,9 @@ export class ConnexionComponent implements OnInit {
 
   private mail : string = '';
   private mdp : string = '';
-  private resultat : boolean = false;
+  private resultat : Object;
 
-  constructor(private service : ConnexionService) { }
+  constructor(private service : ConnexionService, private test : AuthComponent) { }
 
   ngOnInit() {
   }
@@ -25,9 +26,16 @@ export class ConnexionComponent implements OnInit {
   	  mail : this.mail,
   	  mdp : this.mdp
   	}
-  	
+
   	this.service.connexion(infos).subscribe(res => {
     this.resultat = res;});
+
+    console.log(this.resultat);
+    if(!(this.resultat == [])){
+      console.log("lulu");
+      this.test.connexion();
+    }
+    
   }
 
 }
