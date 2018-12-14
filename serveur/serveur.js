@@ -34,13 +34,28 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.post('/connexion', (req, res) => {
 		console.log(req.query);
-		db.collection("membres").find({"mail": req.query["mail"]}).count()
+		db.collection("membres").find({"mail": req.query["mail"], "MDP": req.query["mdp"]}).count()
 		.then(function(numItems){
 			if(numItems===1){
 				console.log("Connecter");
+				db.collection("membres")
+				.find({"mail": req.query["mail"]})
+				.toArray((err, documents)=> {
+					 // la création de json ne sert à rien ici
+					 // on pourrait directement renvoyer documents
+					console.log(req.query);
+					let json = [];
+					for (let doc of documents) {
+						json.push(doc);
+					};
+					console.log(json);
+					res.setHeader("Content-type", "application/json");
+					res.end(JSON.stringify(json));
+				});
 				//res.send('Connecter');
 			}else{
-				console.log("Pas de compte");
+				let json = [];
+				res.end(JSON.stringify(json));
 				//res.send('Pas de compte');
 			}
 		})
