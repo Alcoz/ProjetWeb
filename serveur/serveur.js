@@ -16,11 +16,12 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		next();
 	});
 
-	app.get('/inscription/', (req, res) => {
+	app.post('/register/', (req, res) => {
 		if(db.collection("membres").find(req.query["mail"]).count()===0){
-			inscription(db, req.query);
-			console.log("Inscrit");
+			db.collection("membres").insertOne(req.query);
+			res.send("Inscrit");
 		} else {
+			res.send('Déjà inscrit');
 			console.log("Déjà inscrit");
 		}
 	});
@@ -111,7 +112,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	/*app.get('/emprunt', (req, res) => {
 		if(db.collection("biens").find(req.query))
 	});*/
-	
+
 	app.get('/biensRecents', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens").find().toArray((err, documents)=> {
@@ -129,7 +130,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	app.post('/rechercheMembre/', (req, res) => {
 		membresResearch(db, req.query);
 	});*/
-	
+
 });
 
 app.listen(8888);
