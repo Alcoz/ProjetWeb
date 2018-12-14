@@ -5,6 +5,9 @@ var MongoClient = require("mongodb").MongoClient;
 var assert = require("assert");
 var url = "mongodb://localhost:27017";
 var querystring = require('querystring');
+var cors = require('cors');
+
+app.use(cors());
 
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	let db = client.db("TROC");
@@ -16,7 +19,8 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		next();
 	});
 
-	app.post('/register/', (req, res) => {
+	app.post('/register', (req, res) => {
+		console.log("test");
 		if(db.collection("membres").find(req.query["mail"]).count()===0){
 			db.collection("membres").insertOne(req.query);
 			res.send("Inscrit");
@@ -26,6 +30,15 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		}
 	});
 
+	app.post('/connexion', (req, res) => {
+		console.log("connexion");
+		console.log(req.query);
+		if(db.collection("membres").find(req.query["mail"], req.query["mdp"]).count() === 1){
+			console.log("Connecter");
+		} else {
+			console.log("T'existe pas lol");
+		}
+	})
 	//Fonctions rapport au biens
 	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");

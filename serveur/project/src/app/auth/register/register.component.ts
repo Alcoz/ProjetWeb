@@ -7,18 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  mail = '';
-  mdp = '';
-
   constructor() { }
-
-  onSubmit() {
-    console.log("Form Submitted!");
-    console.log("Form Submitted!");
-    console.log("Form Submitted!");
-    console.log("Form Submitted!");
-  }
 
   ngOnInit() {
   }
+
 }
