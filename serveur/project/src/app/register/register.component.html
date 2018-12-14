@@ -1,0 +1,70 @@
+<nav class="navbar navbar-inverse navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" routerLink="/accueil">
+        <!--<img src="assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">-->
+        ShareWood
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/accueil">Accueil</a></li>
+      <li><a routerLink="/recherche">Recherche</a></li>
+      <li class="active"><a routerLink="/register">S'enregistrer</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-4">
+			<h3>Formulaire d'inscription</h3>
+			<form> <!-- method="post"-->
+			  <div class="form-group">
+			    <label>Nom</label>
+			    <input type="text" class="form-control" id="nom" name="nom">
+			  </div>
+			  <div class="form-group">
+			    <label>Prénom</label>
+			    <input type="text" class="form-control" id="prenom" name="prenom">
+			  </div>
+			  <div>
+			    <label>Adresse email</label>
+			    <input type="email" class="form-control" id="mailInscription" name="mailInscription">
+			  </div>
+			  <div class="form-group">
+			    <label>Mot de passe</label>
+			    <input type="password" class="form-control" id="mdpInscription" name="mdpInscription">
+			  </div>
+			  <div class="form-group">
+			    <label>Ville</label>
+			    <input type="text" class="form-control" id="ville" name="ville">
+			  </div>
+			  <div class="form-group">
+			    <label>Adresse</label>
+			    <input type="text" class="form-control" id="adresse" name="adresse">
+			  </div>
+			  <div class="form-group">
+			    <label>Téléphone</label>
+			    <input type="text" class="form-control" id="tel" name="tel">
+			  </div>
+			  <button class="btn btn-primary" (click)="onSubmit()">S'inscrire</button>
+			</form>
+		</div>
+		<div class="col-lg-2"></div>
+		<div class="col-lg-4">
+			<h3>Si vous avez déjà un compte</h3>
+			<form>
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Adresse email</label>
+			    <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Votre mail" name="mail">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Mot de passe</label>
+			    <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" name="mdp">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Se connecter</button>
+			</form>
+		</div>
+	</div>
+</div>

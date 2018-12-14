@@ -108,10 +108,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		db.collection("service").updateOne({"idServ": parseInt(req.query["idServ"])}, {$set: {"Actif": 0}});
 	});
 
-	app.get('/emprunt', (req, res) => {
+	/*app.get('/emprunt', (req, res) => {
 		if(db.collection("biens").find(req.query))
-	});
-	/*
+	});*/
+	
 	app.get('/biensRecents', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens").find().toArray((err, documents)=> {
@@ -125,11 +125,11 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 
-
+	/*
 	app.post('/rechercheMembre/', (req, res) => {
 		membresResearch(db, req.query);
-	});
-	*/
+	});*/
+	
 });
 
 app.listen(8888);
