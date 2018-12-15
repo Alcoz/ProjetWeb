@@ -1,23 +1,28 @@
 "use strict"
-var express = require("express");
-var app = express();
+
 var MongoClient = require("mongodb").MongoClient;
 var assert = require("assert");
 var url = "mongodb://localhost:27017";
-var querystring = require('querystring');
+var express = require("express");
 var cors = require('cors');
+var app = express();
+var bodyParser = require("body-parser");
 
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 app.use(cors());
+
+app.get('/*', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization');
+	next();
+});
 
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	let db = client.db("TROC");
 	assert.equal(null, err);
 	console.log("Connexion au serveur MongoDB réussi!");
-
-	app.get('/', (req, res) => {
-		res.setHeader("Access-Control-Allow-Origin", "*");
-		next();
-	});
 
 	app.post('/register', (req, res) => {
 		db.collection("membres").find({"mail": req.query["mail"]}).count()
@@ -33,8 +38,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.post('/connexion', (req, res) => {
-		console.log(req.query);
-		db.collection("membres").find({"mail": req.query["mail"], "MDP": req.query["mdp"]}).count()
+		db.collection("membres").find({"mail": req.body.mail, "MDP": req.body.mdp}).count()
 		.then(function(numItems){
 			if(numItems===1){
 				console.log("Connecter");
@@ -43,12 +47,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				.toArray((err, documents)=> {
 					 // la création de json ne sert à rien ici
 					 // on pourrait directement renvoyer documents
-					console.log(req.query);
 					let json = [];
 					for (let doc of documents) {
 						json.push(doc);
 					};
-					console.log(json);
 					res.setHeader("Content-type", "application/json");
 					res.end(JSON.stringify(json));
 				});

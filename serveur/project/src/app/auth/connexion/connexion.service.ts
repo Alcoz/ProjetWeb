@@ -10,21 +10,19 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ConnexionService {
 
-
   private url = 'http://localhost:8888/';
 
   constructor(private http : HttpClient) { }
 
-  connexion(infos):Observable<any>{
+  connexion(infos) {
   	const httpOptions = {
-		headers: new HttpHeaders({
+		    headers: new HttpHeaders({
 	    	'Content-Type':  'application/json',
 	    	'Access-Control-Allow-Origin' : 'GET, POST, PUT, DELETE, OPTIONS'
 	    })
-	};
+	   };
 
-	console.log(infos.mail);
-	console.log(infos.mdp);
-  	return this.http.post<any>(this.url + "connexion?mail=" + infos.mail + "&mdp=" + infos.mdp, JSON.stringify(infos), httpOptions);
+     console.log(infos);
+  	return this.http.post(this.url + "connexion", JSON.stringify(infos), httpOptions);
   }
 }

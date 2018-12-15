@@ -7,6 +7,7 @@ import { AuthComponent } from '../auth.component'
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
+
 export class ConnexionComponent implements OnInit {
 
   private mail : string = '';
@@ -18,24 +19,14 @@ export class ConnexionComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmitConnexion(){
-  	console.log(this.mail);
-  	console.log(this.mdp);
-
-  	let infos = {
-  	  mail : this.mail,
-  	  mdp : this.mdp
-  	}
-
-  	this.service.connexion(infos).subscribe(res => {
-    this.resultat = res;});
-
-    console.log(this.resultat);
-    if(!(this.resultat == [])){
-      console.log("lulu");
-      this.test.connexion();
+  connexion(){
+    let infos = {
+      mail : this.mail,
+      mdp : this.mdp
     }
-    
+
+    this.service.connexion(infos)
+    .subscribe(data => console.log(data))
   }
 
 }
