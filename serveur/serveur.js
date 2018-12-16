@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/*', (req, res) => {
+app.get('/*', (req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization');
@@ -47,6 +47,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				.toArray((err, documents)=> {
 					 // la création de json ne sert à rien ici
 					 // on pourrait directement renvoyer documents
+					 console.log("bon");
 					let json = [];
 					for (let doc of documents) {
 						json.push(doc);
@@ -56,6 +57,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				});
 				//res.send('Connecter');
 			}else{
+				console.log("pasbon");
 				let json = [];
 				res.setHeader("Content-type", "application/json");
 				res.end(JSON.stringify(json));

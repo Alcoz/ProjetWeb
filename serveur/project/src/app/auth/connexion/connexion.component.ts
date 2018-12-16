@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConnexionService } from './connexion.service';
 import { AuthComponent } from '../auth.component'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connexion',
@@ -14,9 +15,16 @@ export class ConnexionComponent implements OnInit {
   private mdp : string = '';
   private resultat : Object;
 
-  constructor(private service : ConnexionService, private test : AuthComponent) { }
+  constructor(private service : ConnexionService, private auth : AuthComponent, private router : Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
   }
 
   connexion(){
@@ -26,7 +34,19 @@ export class ConnexionComponent implements OnInit {
     }
 
     this.service.connexion(infos)
-    .subscribe(data => console.log(data))
-  }
+    .subscribe(data => this.resultat = data)
 
+    console.log(this.resultat);
+
+    if(Object.keys(this.resultat).length == 0){
+      var value = 'true';
+      localStorage.setItem('isLoggedIn', value);
+      localStorage.setItem('compte', JSON.stringify(this.resultat));
+    }
+
+    var value = 'true';
+    localStorage.setItem('isLoggedIn', value);
+
+    this.router.navigate(['/auth/compte']);
+  }
 }

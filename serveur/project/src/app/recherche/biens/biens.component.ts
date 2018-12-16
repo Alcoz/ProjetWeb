@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BiensService } from './biens.service';
+import { BiensService } from '../../services/biens.service';
 
 @Component({
   selector: 'app-biens',

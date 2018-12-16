@@ -1,0 +1,107 @@
+<app-header></app-header>
+
+<h3 style="text-align: center"> Votre profil </h3>
+<br><br>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10" id="profil">
+			<br>
+			<div class="col-lg-1"></div>
+			<div class="col-lg-3">
+				<img id="imageProfil" src="assets/img/profil.png" width="300" height="300" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+			</div>
+			<div class="col-lg-6" id="infosProfil">
+				<div class="row" id="nomProfil">
+					Van Iseghem Pierre
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-lg-2">
+						<p>Adresse : </p> 
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-6">
+						29 place Jules Romains
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">
+						<p>Numéro : </p> 
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-6">
+						0654585478
+					</div>
+					<br>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">
+						<p>Mail : </p> 
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-6">
+						pierre.vaniseghem@gmail.com
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">
+						<p>Niveau : </p> 
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-6 text">
+						Admin
+					</div>
+				</div>
+				<div class="row"><br></div>
+				<div class="row">
+					<div class="col-lg-2">
+						<button type="button" class="btn btn-primary">Modifier</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<br>
+	<h3>Vos biens et services</h3>
+	<br>
+	<div class="list-group">
+		<div class="row"> <!--*ngFor="let bien of biens"-->
+			<div class="row" id="item">
+				<br>
+	    		<div class="col-lg-2">
+			        <img src="assets/img/logo.png" width="250" height="250" class="d-inline-block align-top" alt="">
+			    </div>
+			    <div class="col-lg-3">
+			    	<div class="row" style="text-align: center;"><button type="button" class="btn btn-success btn-lg">Service</button></div>
+			        <div class="row"> <p>Nom :</p> </div>
+			        <div class="row"> <p>Prix : 50 €</p> </div>
+			        <div class="row"> <p>Durée : 3 jours</p> </div>
+			        <div class="row"> <p>Proposé par  : Robert</p> </div>
+		        </div>
+		        <div class="col-lg-3">
+			        <h3>Navbar Forms</h3>
+					  Use the .navbar-form class to vertically align form elements (same padding as links) inside the navbar.
+					  The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".
+					  The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:
+		        </div>
+			    <div class="col-lg-4" style="text-align: center;">
+			    	<br>
+		      		<div class="row" style="padding-bottom: 3px;">
+		      			<button type="button" class="btn btn-primary">Voir</button>
+		      		</div>
+		      		<div class="row" style="padding-bottom: 3px;">
+		      			<button type="button" class="btn btn-primary">Modifier</button>
+		      		</div>
+		      		<div class="row" style="padding-bottom: 3px;">
+		      			<button type="button" class="btn btn-primary">Supprimer</button>
+		      		</div>
+		        </div>
+		    </div>
+	  </div>
+</div>
+

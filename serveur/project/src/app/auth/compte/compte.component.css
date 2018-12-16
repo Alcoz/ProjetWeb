@@ -1,0 +1,19 @@
+#profil {
+	border: 1px black solid;
+	border-radius: 40px;
+	background: #F8F8FF;
+}
+
+#nomProfil {
+	border-bottom: 1px black solid;
+	font-size: 24px;
+}
+
+p {
+  font-size: 20px;
+}
+
+#item {
+	border: 1px black solid;
+	background: #F8F8FF;
+}

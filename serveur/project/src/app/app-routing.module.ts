@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BiensRechercheComponent } from './biens-recherche/biens-recherche.component';
-import { BiensComponent } from './biens/biens.component';
+import { AccueilComponent } from './accueil/accueil.component';
 import { AuthComponent } from './auth/auth.component';
-import { MonCompteComponent } from './mon-compte/mon-compte.component';
-import { AjoutBienComponent } from './ajout-bien/ajout-bien.component';
+import { CompteComponent } from './auth/compte/compte.component';
+import { BiensDescriptifComponent } from './recherche/biens-descriptif/biens-descriptif.component';
+
 
 const routes: Routes = [
-	{ path: 'accueil', component: BiensComponent },
+	{ path: 'accueil', component: AccueilComponent },
 	{ path: 'recherche', component: BiensRechercheComponent },
 	{ path: 'auth', component: AuthComponent },
-	{ path: 'compte', component: MonCompteComponent },
-	{ path: 'compte/ajout', component: AjoutBienComponent }
+	{ path: 'auth/compte', component: CompteComponent },
+	{ path: 'recherche/biens-descriptif', component: CompteComponent }
 ];
 
 @NgModule({
@@ -19,3 +20,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
