@@ -23,6 +23,7 @@
 	  "descriptif": "Fait du bon cafe",
 	  "lienPhoto": "assets/img/logo.png",
 	  "prixNeuf": 70,
+	  "Actif" : 1,
 	 	"mailProp": "baptiste-darnala@hotmail.fr"
 	},
 	{ "_id": "5bf67d281759100a29bd2b93",
@@ -30,5 +31,6 @@
 	  "nom": "chaussures",
 	  "descriptif": "tres comfortable",
 	  "lienPhoto": "assets/img/logo.png",
+	  "Actif" : 1,
 	  "prixNeuf": "70" }
 ]

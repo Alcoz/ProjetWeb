@@ -81,25 +81,34 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			for (let doc of documents) {
 				json.push(doc);
 			};
-			console.log(json);
 			res.setHeader("Content-type", "application/json");
 			res.end(JSON.stringify(json));
 		});
 	});
 
 	//recherche bien propriéaire
-	app.get('/biensServiceProp/', (req, res) =>{
-		console.log(req.query["mailProp"]);
+	app.get('/biensProp/', (req, res) =>{
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		let json = [];
+
 		db.collection("biens")
 		.find({"mailProp" : req.query["mailProp"]})
 		.toArray((err, documents) => {
 			for (let doc of documents){
 				json.push(doc);
+
 			};
-			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
 		})
+
+
+	});
+
+	app.get('/servicesProp/', (req, res) =>{
+		console.log(req.query["mailProp"]);
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		let json = [];
 
 		db.collection("services")
 		.find({"mailProp" : req.query["mailProp"]})
@@ -107,11 +116,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			for (let doc of documents){
 				json.push(doc);
 			};
-			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));	
 		})
-
-		res.setHeader("Content-type", "application/json");
-		res.end(JSON.stringify(json));
 	});
 
 
@@ -124,8 +131,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		}
 	});
 
-	app.get('/biensSupp', (req, res) => {
-		console.log({"idbien": parseInt(req.query["idBien"])});
+	app.get('/bienSupp/', (req, res) => {
 		db.collection("biens").updateOne({"idBien": parseInt(req.query["idBien"])}, {$set: {"Actif": 0}});
 
 		db.collection("biens")
@@ -173,8 +179,22 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		}
 	});
 
-	app.get('/serviceSupp', (req, res) => {
-		db.collection("service").updateOne({"idServ": parseInt(req.query["idServ"])}, {$set: {"Actif": 0}});
+	app.get('/serviceSupp/', (req, res) => {
+		db.collection("services").updateOne({"idService": parseInt(req.query["idService"])}, {$set: {"Actif": 0}});
+
+		db.collection("services")
+		.find()
+		.toArray((err, documents)=> {
+			 // la création de json ne sert à rien ici
+			 // on pourrait directement renvoyer documents
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
 	});
 
 	app.get('/biensRecents', (req, res) => {

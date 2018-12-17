@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { BiensComponent } from './recherche/biens/biens.component';
 import { BiensService } from './services/biens.service';
 import { BiensRechercheComponent } from './biens-recherche/biens-recherche.component';
-import { MonCompteComponent } from './mon-compte/mon-compte.component';
-import { AjoutBienComponent } from './ajout-bien/ajout-bien.component';
 import { AuthComponent } from './auth/auth.component';
 import { ConnexionComponent } from './auth/connexion/connexion.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -19,17 +17,15 @@ import { CompteComponent } from './auth/compte/compte.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { RechercheComponent } from './recherche/recherche.component';
 import { ServicesComponent } from './recherche/services/services.component';
-import { BiensDescriptifComponent } from './recherche/biens-descriptif/biens-descriptif.component';
-import { ServicesDescriptifComponent } from './recherche/services-descriptif/services-descriptif.component';
 import { BiensCompteComponent } from './recherche/biens-compte/biens-compte.component';
+import { EmpruntCompteComponent } from './recherche/emprunt-compte/emprunt-compte.component';
+import { DescriptifComponent } from './recherche/descriptif/descriptif.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BiensComponent,
     BiensRechercheComponent,
-    MonCompteComponent,
-    AjoutBienComponent,
     AuthComponent,
     ConnexionComponent,
     RegisterComponent,
@@ -38,9 +34,9 @@ import { BiensCompteComponent } from './recherche/biens-compte/biens-compte.comp
     AccueilComponent,
     RechercheComponent,
     ServicesComponent,
-    BiensDescriptifComponent,
-    ServicesDescriptifComponent,
-    BiensCompteComponent
+    BiensCompteComponent,
+    EmpruntCompteComponent,
+    DescriptifComponent
   ],
   imports: [
     BrowserModule,

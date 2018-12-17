@@ -4,7 +4,7 @@ import { BiensRechercheComponent } from './biens-recherche/biens-recherche.compo
 import { AccueilComponent } from './accueil/accueil.component';
 import { AuthComponent } from './auth/auth.component';
 import { CompteComponent } from './auth/compte/compte.component';
-import { BiensDescriptifComponent } from './recherche/biens-descriptif/biens-descriptif.component';
+import { DescriptifComponent } from './recherche/descriptif/descriptif.component';
 
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
 	{ path: 'recherche', component: BiensRechercheComponent },
 	{ path: 'auth', component: AuthComponent },
 	{ path: 'auth/compte', component: CompteComponent },
-	{ path: 'recherche/biens-descriptif', component: CompteComponent }
+	{ path: 'recherche/descriptif', component: DescriptifComponent }
 ];
 
 @NgModule({

@@ -20,8 +20,21 @@ export class BiensService implements OnInit {
   }
 
   getBiensUtilisateur(param : string):Observable<any>{
-      console.log(param);
   	  return this.http.get<any>(this.url + "biensProp?mailProp=" + param);
+  }
+
+  getServicesUtilisateur(param : string):Observable<any>{
+      return this.http.get<any>(this.url + "servicesProp?mailProp=" + param);
+  }
+
+  supprimerBienUtilisateur(param){
+      console.log(param);
+      return this.http.get<any>(this.url + "bienSupp?idBien=" + param);
+  }
+
+  supprimerServiceUtilisateur(param){
+    console.log("servicesupp");
+    return this.http.get<any>(this.url + "serviceSupp?idService=" + param);
   }
 
 }
