@@ -88,10 +88,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	//recherche bien propriéaire
-	app.get('/biens/:idProp', (req, res) =>{
+	app.get('/biens/:mailProp', (req, res) =>{
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens")
-		.find({"idProp" : req.params.idProp })
+		.find({"mailProp" : req.params.mailProp})
 		.toArray((err, documents) => {
 			let json = [];
 			for (let doc of documents){
