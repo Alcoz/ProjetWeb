@@ -19,4 +19,9 @@ export class BiensService implements OnInit {
       return this.http.get<any>(this.url + "biensRecents");
   }
 
+  getBiensUtilisateur(param : string):Observable<any>{
+      console.log(param);
+  	  return this.http.get<any>(this.url + "biensProp?mailProp=" + param);
+  }
+
 }

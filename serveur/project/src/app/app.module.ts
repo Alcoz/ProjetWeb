@@ -21,6 +21,7 @@ import { RechercheComponent } from './recherche/recherche.component';
 import { ServicesComponent } from './recherche/services/services.component';
 import { BiensDescriptifComponent } from './recherche/biens-descriptif/biens-descriptif.component';
 import { ServicesDescriptifComponent } from './recherche/services-descriptif/services-descriptif.component';
+import { BiensCompteComponent } from './recherche/biens-compte/biens-compte.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ServicesDescriptifComponent } from './recherche/services-descriptif/ser
     RechercheComponent,
     ServicesComponent,
     BiensDescriptifComponent,
-    ServicesDescriptifComponent
+    ServicesDescriptifComponent,
+    BiensCompteComponent
   ],
   imports: [
     BrowserModule,

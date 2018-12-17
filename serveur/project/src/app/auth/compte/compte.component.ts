@@ -7,9 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteComponent implements OnInit {
 
+	private nom : string = 'test';
+	private prenom : string;
+	private ville : string;
+	private mail : string;
+	private niveau : string;
+	private compteur : number;
+	private numero : number;
   constructor() { }
 
   ngOnInit() {
+  	var compte = localStorage.getItem("compte");
+  	var value = JSON.parse(compte);
+  	this.mail = value[0].mail;
+  	this.nom = value[0].nom;
+  	this.prenom = value[0].prénom;
+  	this.ville = value[0].ville;
+  	this.numero = value[0].numero;
+    
+  	if(value[0].Admin == 1){
+  		this.niveau = 'Administrateur';
+  	}
+  	else{
+  		this.niveau = 'Utilisateur';
+  	}
   }
 
 }

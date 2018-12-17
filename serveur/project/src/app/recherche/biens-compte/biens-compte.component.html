@@ -1,0 +1,35 @@
+<h3>Vos biens et services</h3>
+<br>
+<div class="list-group">
+	<div *ngFor="let composant of listObjetsProp" class="row"> <!---->
+		<div class="row" id="item">
+			<br>
+    		<div class="col-lg-3">
+		        <img src="assets/img/logo.png" width="250" height="250" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+		    </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-success btn-lg">Service</button></div>
+		        <div class="row"> <p>Nom : {{composant.nom}}</p> </div>
+		        <div class="row"> <p>Durée : 3 jours</p> </div>
+		        <div class="row"> <p>Proposé par  : Robert</p> </div>
+	        </div>
+	        <div class="col-lg-3">
+				  Use the .navbar-form class to vertically align form elements (same padding as links) inside the navbar.
+				  The .input-group class is a container to enhance an input by adding an icon, text or a button in front or behind it as a "help text".
+				  The .input-group-btn class attaches a button next to an input field. This is often used as a search bar:
+	        </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<br>
+	      		<div class="row" style="padding-bottom: 3px;">
+	      			<button type="button" class="btn btn-primary">Voir</button>
+	      		</div>
+	      		<div class="row" style="padding-bottom: 3px;">
+	      			<button type="button" class="btn btn-primary">Modifier</button>
+	      		</div>
+	      		<div class="row" style="padding-bottom: 3px;">
+	      			<button type="button" class="btn btn-primary">Supprimer</button>
+	      		</div>
+	        </div>
+	    </div>
+    </div>
+</div>

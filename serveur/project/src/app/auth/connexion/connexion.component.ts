@@ -36,8 +36,6 @@ export class ConnexionComponent implements OnInit {
     this.service.connexion(infos)
     .subscribe(data => this.resultat = data)
 
-    console.log(this.resultat);
-
     if(Object.keys(this.resultat).length != 0){
       var value = 'true';
       localStorage.setItem('isLoggedIn', value);
