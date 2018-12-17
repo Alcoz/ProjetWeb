@@ -88,20 +88,30 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	//recherche bien propriéaire
-	app.get('/biensProp/', (req, res) =>{
+	app.get('/BiensServiceProp/', (req, res) =>{
 		console.log(req.query["mailProp"]);
 		res.setHeader("Access-Control-Allow-Origin", "*");
+		let json = [];
 		db.collection("biens")
 		.find({"mailProp" : req.query["mailProp"]})
 		.toArray((err, documents) => {
-			let json = [];
 			for (let doc of documents){
 				json.push(doc);
 			};
 			console.log(json);
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
 		})
+
+		db.collection("services")
+		.find({"mailProp" : req.query["mailProp"]})
+		.toArray((err, documents) => {
+			for (let doc of documents){
+				json.push(doc);
+			};
+			console.log(json);
+		})
+
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
 	});
 
 

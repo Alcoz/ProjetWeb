@@ -1,0 +1,14 @@
+[
+  {
+    "idService" : 1,
+    "descriptif" : "Je viens faire le menage chez vous",
+    "prix" : 50,
+    "mailProp" : "baptiste-darnala@hotmail.fr"
+  },
+  {
+    "idService" : 2,
+    "descriptif" : "Je viens réparer la tuyauterie chez vous",
+    "prix" : 50,
+    "mailProp" : "Dupont-Laurent@gmail.com"
+  }
+]
