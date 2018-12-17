@@ -25,14 +25,15 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	console.log("Connexion au serveur MongoDB réussi!");
 
 	app.post('/register', (req, res) => {
-		db.collection("membres").find({"mail": req.query["mail"]}).count()
+		db.collection("membres").find({"mail": req.body.mail}).count()
 	 	.then(function(numItems) {
 			if(numItems===0){
 				db.collection("membres").insertOne(req.query);
 				res.send("Inscrit");
 			} else {
-				res.send('Déjà inscrit');
-				console.log("Déjà inscrit");
+				let json = [];
+				res.setHeader("Content-type", "application/json");
+				res.end(JSON.stringify(json));
 			}
 	 })
 	});
@@ -67,16 +68,15 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	//Fonctions rapport au biens
-	app.get('/biens', (req, res) => {
+	//recherche bien générale
+	app.get('/biens/', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 
-		console.log(req.query["nom"]);
 		db.collection("biens")
 		.find({"nom": new RegExp(req.query["nom"], "i")})
 		.toArray((err, documents)=> {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
-			console.log(req.query);
 			let json = [];
 			for (let doc of documents) {
 				json.push(doc);
@@ -86,6 +86,22 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.end(JSON.stringify(json));
 		});
 	});
+
+	//recherche bien propriéaire
+	app.get('/biens/:idProp', (req, res) =>{
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("biens")
+		.find({"idProp" : req.params.idProp })
+		.toArray((err, documents) => {
+			let json = [];
+			for (let doc of documents){
+				json.push(doc);
+			};
+			res.setHeader("Content-type", "application");
+			res.end(JSON.stringify(json));
+		})
+	});
+
 
 	app.get('/biensAjout', (req, res) => {
 		if(db.collection("membres").find(req.query).count()===0){
