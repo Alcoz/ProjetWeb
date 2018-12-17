@@ -43,7 +43,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			if(numItems===1){
 				console.log("Connecter");
 				db.collection("membres")
-				.find({"mail": req.query["mail"]})
+				.find({"mail": req.body.mail})
 				.toArray((err, documents)=> {
 					 // la création de json ne sert à rien ici
 					 // on pourrait directement renvoyer documents

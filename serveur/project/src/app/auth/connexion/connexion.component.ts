@@ -38,15 +38,14 @@ export class ConnexionComponent implements OnInit {
 
     console.log(this.resultat);
 
-    if(Object.keys(this.resultat).length == 0){
+    if(Object.keys(this.resultat).length != 0){
       var value = 'true';
       localStorage.setItem('isLoggedIn', value);
       localStorage.setItem('compte', JSON.stringify(this.resultat));
+      this.router.navigate(['/auth/compte']);
     }
-
-    var value = 'true';
-    localStorage.setItem('isLoggedIn', value);
-
-    this.router.navigate(['/auth/compte']);
+    else{
+       console.log("erreur");
+    }
   }
 }

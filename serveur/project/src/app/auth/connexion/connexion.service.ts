@@ -21,8 +21,6 @@ export class ConnexionService {
 	    	'Access-Control-Allow-Origin' : 'GET, POST, PUT, DELETE, OPTIONS'
 	    })
 	   };
-
-     console.log(infos);
   	return this.http.post(this.url + "connexion", JSON.stringify(infos), httpOptions);
   }
 }
