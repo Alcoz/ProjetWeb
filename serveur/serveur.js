@@ -88,7 +88,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	//recherche bien propriéaire
-	app.get('/BiensServiceProp/', (req, res) =>{
+	app.get('/biensServiceProp/', (req, res) =>{
 		console.log(req.query["mailProp"]);
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		let json = [];
@@ -177,10 +177,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		db.collection("service").updateOne({"idServ": parseInt(req.query["idServ"])}, {$set: {"Actif": 0}});
 	});
 
-	/*app.get('/emprunt', (req, res) => {
-		if(db.collection("biens").find(req.query))
-	});*/
-
 	app.get('/biensRecents', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens").find().toArray((err, documents)=> {
@@ -192,12 +188,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			res.end(JSON.stringify(json));
 		});
 	});
-
-
-	/*
-	app.post('/rechercheMembre/', (req, res) => {
-		membresResearch(db, req.query);
-	});*/
 
 });
 
