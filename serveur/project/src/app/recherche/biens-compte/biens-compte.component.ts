@@ -24,20 +24,20 @@ export class BiensCompteComponent implements OnInit {
   	var object = JSON.parse(localStorage.getItem("compte"));
   	var mail = object[0].mail;
 
-  	this.service.getBiensUtilisateur(mail)
+  	/*this.service.getBiensUtilisateur(mail)
     .subscribe(data => {this.listBiensProp = data;});
 
-    this.service.getServicesUtilisateur(mail)
-    .subscribe(data => {this.listServicesProp = data;});
+    this.service.getAllBiens(mail)
+    .subscribe(data => {this.listServicesProp = data;});*/
   }
 
   supprimerService(param){
-    this.service.supprimerServiceUtilisateur(param).subscribe();
+    this.service.supprimerService(param).subscribe();
     window.location.reload();
   }
 
   supprimerBien(param){
-    this.service.supprimerBienUtilisateur(param).subscribe();
+    this.service.supprimerBien(param).subscribe();
     window.location.reload();
   }
 

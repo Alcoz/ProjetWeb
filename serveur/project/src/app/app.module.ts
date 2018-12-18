@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -58,9 +60,13 @@ import { CalendarComponent } from './recherche/descriptif/calendar/calendar.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CalendarModule,
+    BrowserAnimationsModule,
     FormsModule
   ],
   providers: [BiensService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//npm install @angular/animations
