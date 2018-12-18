@@ -313,20 +313,20 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/ban', (req, res) =>{
-
-	//	db.collection("membres").deleteOne({"_id": ObjectId(req.query["id"])});
-		db.collection("biens").find({"mailProp": req.query["mail"]})
+	//	db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
+		db.collection("biens")
+		.find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
-			for(doc of documents){
-				console.log(doc);
-				//db.collection("descriptifBiens").deleteOne({"idBien": ObjectId(doc._id)});
+			for(let doc of documents){
+				console.log(doc._id);
+				db.collection("descriptifBiens").deleteOne({"idBien": ObjectId(doc._id)});
 			}
 		});
-		//db.collection("biens").deleteOne({"mailProp": req.query["mail"]});
+		db.collection("biens").deleteMany({"mailProp": req.query["mail"]});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
-	})
+	});
 });
 
 app.listen(8888);
