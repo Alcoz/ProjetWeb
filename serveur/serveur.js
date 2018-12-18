@@ -251,6 +251,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
+	app.get('/services', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("services").find().toArray((err, documents)=> {
+			let json = [];
+			for (let doc of documents) {
+				json.push(doc);
+			};
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
 	//requete des membres
 	app.get('/membres', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
