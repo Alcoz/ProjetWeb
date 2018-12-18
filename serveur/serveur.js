@@ -245,15 +245,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	app.get('/bienSupp/', (req, res) => {
 		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"Actif": 0}});
 
-		db.collection("biens")
-		.find()
-		.toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			let json = [];
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
-		});
+		let json = [];
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
+
 	});
 
 	//Ajout et suppression des services
@@ -273,18 +268,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	app.get('/serviceSupp/', (req, res) => {
 		db.collection("services").updateOne({"_id": req.query["_id"]}, {$set: {"Actif": 0}});
 
-		db.collection("services")
-		.find()
-		.toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			let json = [];
-			for (let doc of documents) {
-				json.push(doc);
-			};
-			console.log(json);
-			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));
+		let json = [];
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
 		});
 	});
 
