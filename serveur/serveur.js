@@ -179,7 +179,8 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/bienSupp/', (req, res) => {
-		db.collection("biens").updateOne({"idBien": parseInt(req.query["idBien"])}, {$set: {"Actif": 0}});
+		console.log(req.query["_id"]);
+		db.collection("biens").updateOne({"_id":ObjectId(req.query["_id"])}, {$set: {"Actif": 0}});
 
 		db.collection("biens")
 		.find()

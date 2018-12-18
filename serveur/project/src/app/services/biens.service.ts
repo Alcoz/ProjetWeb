@@ -28,12 +28,11 @@ export class BiensService implements OnInit {
   }
 
   supprimerBienUtilisateur(param){
-      console.log(param);
-      return this.http.get<any>(this.url + "bienSupp?idBien=" + param);
+      return this.http.get<any>(this.url + "bienSupp?_id=" + param);
   }
 
   supprimerServiceUtilisateur(param){
-    return this.http.get<any>(this.url + "serviceSupp?idService=" + param);
+    return this.http.get<any>(this.url + "serviceSupp?_id=" + param);
   }
 
   ajouterBienUtilisateur(param){
