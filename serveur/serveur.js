@@ -270,6 +270,19 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
+	app.get('/membresMail', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("membres").find({"mail": req.query["mail"]}).toArray((err,documents)=>{
+			let json = [];
+			for(let doc of documents){
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
 	app.get('/membresDes', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("membres").find({"score" : {$lte: 5}}).toArray((err,documents)=>{
