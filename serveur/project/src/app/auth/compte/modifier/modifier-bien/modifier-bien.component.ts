@@ -15,8 +15,5 @@ export class ModifierBienComponent implements OnInit {
   constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
-  	let biensCompte = new BiensCompteComponent(this.service, this.router);
-    var mail = biensCompte.getMail;
-    console.log(mail);
   }
 }
