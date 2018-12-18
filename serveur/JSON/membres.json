@@ -5,7 +5,9 @@
 		"nom" : "Darnala",
 		"prénom" : "Baptiste",
 		"Admin" : 1,
-		"ville" : "Montpellier"
+		"ville" : "Montpellier",
+		"adresse" : "125 Avenue Augustin Fliche",
+		"score" : 99999
 
 	},
 	{
@@ -14,7 +16,9 @@
 		"nom" : "Dupont",
 		"prénom" : "Laurent",
 		"Admin" : 0,
-		"ville" : "Montpellier"
+		"ville" : "Montpellier",
+		"adresse" : "41 Rue du Faubourg Boutonnet",
+		"score" : 4
 	},
 	{
 		"mail" : "Porto-Dylan@gmail.com",
@@ -22,6 +26,8 @@
 		"nom" : "Porto",
 		"prénom" : "Dylan",
 		"Admin" : 0,
-		"ville" : "Paris"
+		"ville" : "Paris",
+		"adresse" : "18 Rue des Bourdonnais",
+		"score" : 79
 	}
 ]

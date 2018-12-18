@@ -7,6 +7,7 @@ var express = require("express");
 var cors = require('cors');
 var app = express();
 var bodyParser = require("body-parser");
+var ObjectId = require("mongodb").ObjectId;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -86,6 +87,39 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
+	app.get('/biensMotClef', (req, res) => {
+		console.log("biensMotClef");
+		db.collection("biens").aggregate([
+			{
+				$lookup:
+				{
+					from: "descriptifBiens",
+					localField: "_id",
+					foreignField: "idBien",
+					as: "bienDesc"
+				}
+			}
+		]).toArray(function(err, res2) {
+			if (err) throw err;
+			let json = [];
+			let motClef = JSON.parse(req.query["motClef"]);
+			for(let r of res2){
+				for(let r2 of r.bienDesc){
+					for(let mot of motClef){
+						for(let mot2 of r2.motClef){
+							if(!mot.localeCompare(mot2) && !json.includes(r)){
+								json.push(r);
+							}
+						}
+					}
+				}
+			}
+
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		})
+	});
+
 	//recherche bien propriéaire
 	app.get('/biensProp/', (req, res) =>{
 		res.setHeader("Access-Control-Allow-Origin", "*");
@@ -117,7 +151,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				json.push(doc);
 			};
 			res.setHeader("Content-type", "application/json");
-			res.end(JSON.stringify(json));	
+			res.end(JSON.stringify(json));
 		})
 	});
 
@@ -209,6 +243,32 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
+	//requete des membres
+	app.get('/membres', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("membres").find().toArray((err,documents)=>{
+			let json = [];
+			for(let doc of documents){
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
+
+	app.get('/membresDes', (req, res) => {
+		res.setHeader("Access-Control-Allow-Origin", "*");
+		db.collection("membres").find({"score" : {$lte: 5}}).toArray((err,documents)=>{
+			let json = [];
+			for(let doc of documents){
+				json.push(doc);
+			};
+			console.log(json);
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
+	});
 });
 
 app.listen(8888);

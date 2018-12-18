@@ -1,0 +1,18 @@
+[
+  {
+    "idBien" : "5bf679b38aafe18495a4093e",
+    "motClef" : ["Outils", "Marteau"]
+  },
+  {
+    "idBien" : "5bf679b38aafe18495a4093f",
+    "motClef" : ["Voiture","BMW"]
+  },
+  {
+    "idBien" : "5bf679b38aafe18495a40940",
+    "motClef" : ["Cafetiere"]
+  },
+  {
+    "idBien" : "5bf67d281759100a29bd2b93",
+    "motClef" : ["Chaussures","Baskets"]
+  }
+]
