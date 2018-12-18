@@ -243,7 +243,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/bienModif', (req, res) =>{
-		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"nom": req.query["nom"], "descriptif": req.query["descriptif"], "prixNeuf": req.query["prixNeuf"]}}
+		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"nom": req.query["nom"], "descriptif": req.query["descriptif"], "prixNeuf": req.query["prixNeuf"]}});
 	});
 
 	app.get('/bienSupp/', (req, res) => {
@@ -269,7 +269,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/serviceModif', (req, res) =>{
-		db.collection("service").updateOne({"_id": req.query["_id"]}, {$set: {"descriptif": req.query["descriptif"], "prix": req.query["prix"]}})
+		db.collection("service").updateOne({"_id": req.query["_id"]}, {$set: {"descriptif": req.query["descriptif"], "prix": req.query["prix"]}});
 	});
 
 	app.get('/serviceSupp/', (req, res) => {
