@@ -70,7 +70,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	//Fonctions rapport au biens
 	//recherche bien générale
-	app.get('/biens/', (req, res) => {
+	app.get('/biensParam/', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 
 		db.collection("biens")
@@ -178,8 +178,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/bienSupp/', (req, res) => {
-		console.log(req.query["_id"]);
-		db.collection("biens").updateOne({"_id":ObjectId(req.query["_id"])}, {$set: {"Actif": 0}});
+		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"Actif": 0}});
 
 		db.collection("biens")
 		.find()
@@ -187,17 +186,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
 			let json = [];
-			for (let doc of documents) {
-				json.push(doc);
-			};
-			console.log(json);
 			res.setHeader("Content-type", "application/json");
 			res.end(JSON.stringify(json));
 		});
 	});
 
 	//Fonctions rapport au service
-	app.get('/service', (req, res) => {
+	app.get('/serviceParam', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 
 		console.log(req.query["nom"]);
@@ -244,7 +239,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 	});
 
-	app.get('/biensRecents', (req, res) => {
+	app.get('/biens', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("biens").find().toArray((err, documents)=> {
 			let json = [];
