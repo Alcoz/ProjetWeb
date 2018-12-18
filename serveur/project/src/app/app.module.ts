@@ -20,6 +20,12 @@ import { ServicesComponent } from './recherche/services/services.component';
 import { BiensCompteComponent } from './recherche/biens-compte/biens-compte.component';
 import { EmpruntCompteComponent } from './recherche/emprunt-compte/emprunt-compte.component';
 import { DescriptifComponent } from './recherche/descriptif/descriptif.component';
+import { AjoutComponent } from './auth/compte/ajout/ajout.component';
+import { AjoutServiceComponent } from './auth/compte/ajout/ajout-service/ajout-service.component';
+import { AjoutBienComponent } from './auth/compte/ajout/ajout-bien/ajout-bien.component';
+import { ModifierComponent } from './auth/compte/modifier/modifier.component';
+import { ModifierBienComponent } from './auth/compte/modifier/modifier-bien/modifier-bien.component';
+import { ModifierServiceComponent } from './auth/compte/modifier/modifier-service/modifier-service.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,13 @@ import { DescriptifComponent } from './recherche/descriptif/descriptif.component
     ServicesComponent,
     BiensCompteComponent,
     EmpruntCompteComponent,
-    DescriptifComponent
+    DescriptifComponent,
+    AjoutComponent,
+    AjoutServiceComponent,
+    AjoutBienComponent,
+    ModifierComponent,
+    ModifierBienComponent,
+    ModifierServiceComponent
   ],
   imports: [
     BrowserModule,

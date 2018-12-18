@@ -1,4 +1,9 @@
-<h3>Vos biens et services</h3>
+<div class="row" style="text-align: center;">
+	<h3>Vos biens et services</h3>
+	<button type="button" class="btn btn-primary" routerLink="/auth/compte/ajout/ajout-bien">Ajouter un nouveau bien/service</button>
+</div>
+
+
 <br>
 <div class="list-group">
 	<div *ngFor="let composant of listBiensProp" class="row">
@@ -20,10 +25,10 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<br>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" >Voir</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfos(composant)">Voir</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary">Modifier</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-bien" (click)="sendInfosFull(composant)">Modifier</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
 	      			<button type="button" class="btn btn-primary" (click)="supprimerBien(composant.idBien)">Supprimer</button>
@@ -51,7 +56,7 @@
 	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="blbla(composant)">Voir</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary">Modifier</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-service">Modifier</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
 	      			<button type="button" class="btn btn-primary" (click)="supprimerService(composant.idService)">Supprimer</button>

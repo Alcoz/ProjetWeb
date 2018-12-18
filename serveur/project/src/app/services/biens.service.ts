@@ -12,7 +12,7 @@ export class BiensService implements OnInit {
   ngOnInit() {}
 
   getBiens(param : string):Observable<any>{
-  		return this.http.get<any>(this.url + "biens?nom=" + param);
+    return this.http.get<any>(this.url + "biens?nom=" + param);
   }
 
   getBiensRecents():Observable<any>{
@@ -33,8 +33,13 @@ export class BiensService implements OnInit {
   }
 
   supprimerServiceUtilisateur(param){
-    console.log("servicesupp");
     return this.http.get<any>(this.url + "serviceSupp?idService=" + param);
+  }
+
+  ajouterBienUtilisateur(param){
+    console.log(param);
+    return this.http.get<any>(this.url + "biensAjout?nom=" + param.nom + "&descriptif=" + param.descriptif + "&prix=" 
+      + param.prix + "&motClef=" + param.motClef + "&mailProp=" + param.mailProp);
   }
 
 }

@@ -9,7 +9,5 @@ export class AppComponent {
   title = 'project';
 
   constructor() { 
-    var value = 'false';
-    localStorage.setItem('isLoggedIn', value);
   }
 }

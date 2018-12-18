@@ -30,7 +30,7 @@ export class ConnexionComponent implements OnInit {
   connexion(){
     let infos = {
       mail : this.mail,
-      mdp : this.mdp
+      mdp : this.mdp,
     }
 
     this.service.connexion(infos)
