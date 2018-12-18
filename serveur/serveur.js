@@ -248,7 +248,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
-
 	});
 
 	//Ajout et suppression des services
@@ -271,7 +270,6 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
-		});
 	});
 
 
