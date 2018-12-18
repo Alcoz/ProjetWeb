@@ -16,7 +16,7 @@
 				<form (ngSubmit)="callAjout()">
 				  <div class="form-group">
 				    <label>Nom</label>
-				    <input #nom type="text" class="form-control" name="nom">
+				    <input type="text" class="form-control" [(ngModel)]="nom" name="nom" value="blabla">
 				  </div>
 				  <div class="form-group">
 				    <label>Descriptif</label>

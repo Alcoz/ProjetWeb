@@ -11,16 +11,19 @@ export class BiensRechercheComponent implements OnInit {
 
   private biens : Object[];
   private listMotsClefs : string[] = [];
+  private biensMotClef : Object[];
 
   constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
+    this.service.getBiens('').subscribe(res => {
+       this.biens = res;   
+    });
   }
 
   simpleSearch(param) {
     this.service.getBiens(param).subscribe(res => {
-       this.biens = res;  
-      console.log(this.biens);  
+       this.biens = res;   
     });
   }
 
@@ -31,10 +34,9 @@ export class BiensRechercheComponent implements OnInit {
   }
 
   complexSearch() {
-    let infos = {
-      motClef : this.biens
-    }
-    this.service.getBiensMotClef(infos).subscribe()
+    this.service.getBiensMotClef(this.listMotsClefs).subscribe(res =>{
+      this.biensMotClef = res;
+    });
   }
 
   add(param){

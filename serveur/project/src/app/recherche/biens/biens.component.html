@@ -1,17 +1,63 @@
-<h3>Liste des derniers biens</h3>
 <div class="list-group">
+  <div style="padding-bottom: 20px;">
+      <input #boxNom (keyup)="simpleSearch(boxNom.value)" placeholder="Recherche...">
+  </div>
   <div class="row" *ngFor="let bien of biens">
-    <a href="#" class="list-group-item list-group-item-action">
-    <div class="col-lg-3">
-      <img src="assets/img/logo.png" width="150" height="150" class="d-inline-block align-top" alt="">
+    <div class="row" *ngIf="bien.Actif == 1" id="item">
+      <br>
+      <div class="col-lg-3">
+          <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+      </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-warning btn-lg">Bien</button></div>
+          <div class="row"> <p>Nom : {{bien.nom}}</p> </div>
+          <div class="row"> <p>Prix neuf : {{bien.prixNeuf}} €</p> </div>
+          <div class="row"> <p>Proposé par : {{bien.mailProp}}</p> </div>
+        </div>
+        <div class="col-lg-3">
+          {{bien.descriptif}}
+        </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <br>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfosDesc(bien)">Voir</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-bien" (click)="sendInfosModif(bien)">Modifier</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" (click)="supprimerBien(bien._id)">Supprimer</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row"  *ngFor="let service of services">
+    <div class="row" *ngIf="service.Actif == 1" id="item">
+      <br>
+      <div class="col-lg-3">
+          <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+      </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-info btn-lg">Service</button></div>
+          <div class="row"> <p>Nom : {{service.nom}}</p> </div>
+          <div class="row"> <p>Prix : {{service.prix}} €</p> </div>
+          <div class="row"> <p>Proposé par : {{service.mailProp}}</p> </div>
+        </div>
+        <div class="col-lg-3">
+          {{service.descriptif}}
+        </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <br>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfosDesc(service)">Voir</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-service" (click)="sendInfosModif(service)">Modifier</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" (click)="supprimerService(service._id)">Supprimer</button>
+          </div>
+        </div>
     </div>
-    <div class="col-lg-3">
-      <div class="row">Nom : {{bien.nom}}</div>
-      <div class="row"> Prix : {{bien.prixNeuf}} €</div>
-    </div>
-    <div class="col-lg-6">
-      {{bien.descriptif}}
-    </div>
-  </a>
   </div>
 </div>

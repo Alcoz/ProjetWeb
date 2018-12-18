@@ -11,9 +11,17 @@ import { Router } from '@angular/router';
 })
 export class ModifierBienComponent implements OnInit {
 
-  private composant : any;
+  private infos : Object;
+
+  private nom : string;
+  private descriptif : string;
+  private prix : string;
+  private listMotsClefs : string[] = [];
+
   constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
+  	var desc = JSON.parse(localStorage.getItem("descriptif"));
+    this.infos = desc;
   }
 }

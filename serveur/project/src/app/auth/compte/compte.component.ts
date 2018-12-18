@@ -12,8 +12,10 @@ export class CompteComponent implements OnInit {
 	private ville : string;
 	private mail : string;
 	private niveau : string;
+  private niveauChiffre : number;
 	private compteur : number;
 	private adresse : number;
+  private avertissement : number;
   constructor() { }
 
   ngOnInit() {
@@ -24,12 +26,15 @@ export class CompteComponent implements OnInit {
   	this.prenom = value[0].prénom;
   	this.ville = value[0].ville;
   	this.adresse = value[0].adresse;
+    this.compteur = value[0].score;
     
   	if(value[0].Admin == 1){
   		this.niveau = 'Administrateur';
+      this.niveauChiffre = 1;
   	}
   	else{
   		this.niveau = 'Utilisateur';
+      this.niveauChiffre = 0;
   	}
   }
 

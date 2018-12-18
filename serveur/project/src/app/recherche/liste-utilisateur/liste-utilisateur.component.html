@@ -1,0 +1,78 @@
+<div style="padding-bottom: 20px;">
+  <input #boxUtilisateur (keyup)="chercherUtilisateur(boxUtilisateur.value)" placeholder="Recherche...">
+</div>
+<div *ngFor="let utilisateur of utilisateurs">
+    <div class="row" *ngIf="utilisateur.score <= -3" id="under">
+      <br>
+      <div class="col-lg-3">
+          <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+      </div>
+      <div class="col-lg-3" style="text-align: center;">
+          <div class="row" style="padding-bottom: 10px" *ngIf="utilisateur.Admin == 0">
+            <button type="button" class="btn btn-warning btn-lg">Utilisateur</button>
+          </div>
+          <div class="row" style="padding-bottom: 10px" *ngIf="utilisateur.Admin == 1">
+            <button type="button" class="btn btn-success btn-lg">Admin</button>
+          </div>
+          <div class="row"> <p>Nom : {{utilisateur.nom}}</p> </div>
+          <div class="row"> <p>Prénom : {{utilisateur.prenom}}</p> </div>
+          <div class="row"> <p>Ville : {{utilisateur.ville}}</p> </div>
+          <div class="row"> <p>Adresse : {{utilisateur.adresse}}</p> </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="row" style="padding-bottom: 10px">
+            SCORE : {{utilisateur.score}}
+          </div>
+          <div class="row">
+             <p>Mail : {{utilisateur.mail}}</p>
+          </div>
+        </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <br>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" (click)="sendInfos(bien)">Voir</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" (click)="envoieAvertissement(utilisateur._id)">Avertissement</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;" *ngIf="utilisateur.Admin == 0">
+            <button type="button" class="btn btn-primary" (click)="supprimerUtilisateur(utilisateur)">Bannir</button>
+          </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="utilisateur.score > -3" id="upper">
+      <br>
+      <div class="col-lg-3">
+          <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+      </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <div class="row" style="padding-bottom: 10px" *ngIf="utilisateur.Admin == 0">
+            <button type="button" class="btn btn-warning btn-lg">Utilisateur</button>
+          </div>
+          <div class="row" style="padding-bottom: 10px" *ngIf="utilisateur.Admin == 1">
+            <button type="button" class="btn btn-success btn-lg">Admin</button>
+          </div>
+          <div class="row"> <p>Nom : {{utilisateur.nom}}</p> </div>
+          <div class="row"> <p>Prénom : {{utilisateur.prenom}}</p> </div>
+          <div class="row"> <p>Ville : {{utilisateur.ville}}</p> </div>
+          <div class="row"> <p>Adresse : {{utilisateur.adresse}}</p> </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="row" style="padding-bottom: 10px">
+            SCORE : {{utilisateur.score}}
+          </div>
+          <div class="row">
+             <p>Mail : {{utilisateur.mail}}</p>
+          </div>
+        </div>
+      <div class="col-lg-3" style="text-align: center;">
+        <br>
+          <div class="row" style="padding-bottom: 3px;">
+            <button type="button" class="btn btn-primary" (click)="sendInfos(bien)">Voir</button>
+          </div>
+          <div class="row" style="padding-bottom: 3px;" *ngIf="utilisateur.Admin == 0">
+            <button type="button" class="btn btn-primary" (click)="supprimerUtilisateur(utilisateur)">Bannir</button>
+          </div>
+      </div>
+    </div>
+</div>

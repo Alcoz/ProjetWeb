@@ -46,23 +46,4 @@ export class BiensCompteComponent implements OnInit {
     localStorage.setItem('descriptif', JSON.stringify(param));
     this.router.navigate(['/recherche/descriptif']);
   }
-
-  sendInfosFull(param){
-    this.composant = param;
-  }
-
-  getComposantBien(){
-    let infos = {
-      _id : this.composant._id,
-      idBien : this.composant.idBien,
-      nom : this.composant.nom,
-      descriptif : this.composant.descriptif,
-      lienPhoto : this.composant.lienPhoto,
-      prixNeuf : this.composant.prixNeuf,
-      Actif : this.composant.Actif,
-      mailProp : this.composant.mailProp
-    }
-    return infos;
-  }
-
 }

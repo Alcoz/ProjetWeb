@@ -54,10 +54,28 @@
 						{{this.niveau}}
 					</div>
 				</div>
-				<div class="row"><br></div>
 				<div class="row">
 					<div class="col-lg-2">
+						<p>Score : </p> 
+					</div>
+					<div class="col-lg-1"></div>
+					<div class="col-lg-6 text">
+						{{this.compteur}}
+					</div>
+				</div>
+				<div class="row"><br></div>
+				<div class="row">
+					<div class="col-lg-2" style="padding-bottom: 15px;">
 						<button type="button" class="btn btn-primary">Modifier</button>
+					</div>
+					<div class="col-lg-6"></div>
+					<div class="col-lg-4" style="padding-bottom: 15px;" *ngIf="this.avertissement == 1">
+						<div class="row" style="text-align: center;">
+							Attention, votre score est très bas !
+						</div>
+						<div class="row" style="text-align: center;">
+							<button type="button" class="btn btn-danger">J'ai compris</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -67,12 +85,22 @@
 
 <div class="container-fluid">
 	<br>
-	<div class="row">
+	<div class="row" *ngIf="this.niveauChiffre == 0">
 		<div class="col-lg-6">
 			<app-biens-compte></app-biens-compte>
 		</div>
 		<div class="col-lg-6">
 			<app-emprunt-compte></app-emprunt-compte>
+		</div>
+	</div>
+	<div class="row" *ngIf="this.niveauChiffre == 1">
+		<div class="col-lg-6">
+			<h3>Tous les biens et services</h3>
+			<app-biens></app-biens>
+		</div>
+		<div class="col-lg-6">
+			<h3>Tous les utilisateurs du site</h3>
+			<app-liste-utilisateur></app-liste-utilisateur>
 		</div>
 	</div>
 </div>

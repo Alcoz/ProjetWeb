@@ -26,6 +26,8 @@ import { AjoutBienComponent } from './auth/compte/ajout/ajout-bien/ajout-bien.co
 import { ModifierComponent } from './auth/compte/modifier/modifier.component';
 import { ModifierBienComponent } from './auth/compte/modifier/modifier-bien/modifier-bien.component';
 import { ModifierServiceComponent } from './auth/compte/modifier/modifier-service/modifier-service.component';
+import { ListeUtilisateurComponent } from './recherche/liste-utilisateur/liste-utilisateur.component';
+import { CalendarComponent } from './recherche/descriptif/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ModifierServiceComponent } from './auth/compte/modifier/modifier-servic
     AjoutBienComponent,
     ModifierComponent,
     ModifierBienComponent,
-    ModifierServiceComponent
+    ModifierServiceComponent,
+    ListeUtilisateurComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
