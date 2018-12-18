@@ -29,8 +29,26 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		db.collection("membres").find({"mail": req.body.mail}).count()
 	 	.then(function(numItems) {
 			if(numItems===0){
-				db.collection("membres").insertOne(req.query);
-				res.send("Inscrit");
+				db.collection("membres").insertOne({
+					"mail": req.body.mail,
+					"MDP": req.body.MDP,
+					"nom": req.body.nom,
+					"prenom" : req.body.prenom,
+					"Admin" : 0,
+					"ville" : req.body.ville,
+					"adresse" : req.body.adresse,
+					"score" : 0
+				});
+
+				db.collection("membres").find({"mail": req.body.mail})
+				.toArray((err, documents) => {
+					let json = [];
+					for(let doc of documents){
+						json.push(doc);
+					}
+					res.setHeader("Content-type", "application/json");
+					res.end(JSON.stringify(json));
+				});
 			} else {
 				let json = [];
 				res.setHeader("Content-type", "application/json");
@@ -237,6 +255,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			"mailProp": req.body.mailProp
 		});
 
+		db.collection("biens").find({"nom": req.body.nom, "mailProp": req.body.mailProp})
+		.toArray((err, documents) => {
+			for(let doc of documents){
+				db.collection("disponibilites").insertOne({
+					"bienOuService" : "bien",
+					"idBienOuService":	doc._id,
+					"dateDebut" : req.dateDebut,
+					"dateFin" : req.dateFin
+				})
+			}
+		})
+
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
@@ -244,6 +274,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/bienModif', (req, res) =>{
 		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"nom": req.query["nom"], "descriptif": req.query["descriptif"], "prixNeuf": req.query["prixNeuf"]}});
+		let json = [];
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
 	});
 
 	app.get('/bienSupp/', (req, res) => {
@@ -263,13 +296,28 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			"mailProp": req.body.mailProp,
 			"Actif": 1
 		})
+
+		db.collection("services").find({"descriptif": req.body.descriptif, "mailProp": req.body.mailProp})
+		.toArray((err, documents) => {
+			for(let doc of documents){
+				db.collection("disponibilites").insertOne({
+					"bienOuService" : "bien",
+					"idBienOuService":	doc._id,
+					"dateDebut" : req.dateDebut,
+					"dateFin" : req.dateFin
+				})
+			}
+		})
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
 	});
 
 	app.get('/serviceModif', (req, res) =>{
-		db.collection("service").updateOne({"_id": req.query["_id"]}, {$set: {"descriptif": req.query["descriptif"], "prix": req.query["prix"]}});
+		db.collection("services").updateOne({"_id": req.query["_id"]}, {$set: {"descriptif": req.query["descriptif"], "prix": req.query["prix"]}});
+		let json = [];
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
 	});
 
 	app.get('/serviceSupp/', (req, res) => {
@@ -280,9 +328,31 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		res.end(JSON.stringify(json));
 	});
 
+	//requete sur les disponibilites et les emprunt
+	app.get('/disponibilitesAjout', (req, res) =>{
+		db.collection("disponibilites").find({"idBienOuService": req.query["idBienOuService"]})
+		.toArray((err, documents) =>{
+			let json = []
+			for(let doc of douments){
+				let rdd = new Date(req.dateDebut);
+
+				if(doc.dateDebut === req.dateDebut){
+					
+				}
+			}
+		});
+	});
+
+	app.get('/emprunt', (req, res) =>{
+
+	});
+
+	app.get('/empruntDate', (req, res) =>{
+
+	});
 
 
-	//requete des membres
+	//requete sur les membres
 	app.get('/membres', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
 		db.collection("membres").find().toArray((err,documents)=>{

@@ -5,7 +5,7 @@
     "MDP":"arbre",
     "nom":"Dupont",
     "prenom":"Laurent",
-    "Admin":0,
+    "Admin": 0,
     "ville":"Montpellier",
     "adresse":"41 Rue du Faubourg Boutonnet"
     ,"score":-5},
