@@ -341,14 +341,17 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				let ddf = new Date(doc.dateFin);
 
 				if((rdd > ddf) && (rdf < ddd)){
-
+					let json = [];
+					res.setHeader("Content-type", "application/json");
+					res.end(JSON.stringify(json));
 				}
 			}
+
 		});
 	});
 
 	app.get('/emprunt', (req, res) =>{
-
+		
 	});
 
 	app.get('/empruntDate', (req, res) =>{
