@@ -272,7 +272,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/membresMail', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
-		db.collection("membres").find({"mail": new RegExp(req.query["mail"]})).toArray((err,documents)=>{
+		db.collection("membres").find({"mail": new RegExp(req.query["mail"])}).toArray((err,documents)=>{
 			let json = [];
 			for(let doc of documents){
 				json.push(doc);
