@@ -285,7 +285,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/membresDes', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
-		db.collection("membres").find({"score" : {$lte: 5}}).toArray((err,documents)=>{
+		db.collection("membres").find({"score" : {$lte: -5}}).toArray((err,documents)=>{
 			let json = [];
 			for(let doc of documents){
 				json.push(doc);
