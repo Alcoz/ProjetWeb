@@ -313,16 +313,18 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/ban', (req, res) =>{
-		db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
+		console.log(req.query["_id"]);
+		db.collection("membres").deleteOne({"_id": req.query["_id"]});
+		db.collection("biens").deleteMany({"mailProp": req.query["mail"]});
 		db.collection("biens")
 		.find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
 			for(let doc of documents){
 				console.log(doc._id);
-				db.collection("descriptifBiens").deleteOne({"idBien": ObjectId(doc._id)});
+				db.collection("descriptifBiens").deleteOne({"idBien": doc._id});
 			}
 		});
-		db.collection("biens").deleteMany({"mailProp": req.query["mail"]});
+
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
@@ -330,4 +332,3 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 });
 
 app.listen(8888);
-/*biensAjout?nom=Tournevis&detscriptif=tourne et retourne&prix=10&mailProp=baptiste-darnala@hotmail.fr&motClef=["Outils"]*/
