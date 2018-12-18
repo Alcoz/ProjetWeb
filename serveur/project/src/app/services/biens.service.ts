@@ -11,8 +11,12 @@ export class BiensService implements OnInit {
 
   ngOnInit() {}
 
-  getBiens(param : string):Observable<any>{
+  getBiens(param):Observable<any>{
     return this.http.get<any>(this.url + "biens?nom=" + param);
+  }
+
+  getBiensMotClef(param):Observable<any>{
+    return this.http.get<any>(this.url + "biensMotClef?motClef=" + param);
   }
 
   getBiensRecents():Observable<any>{

@@ -13,7 +13,7 @@ export class CompteComponent implements OnInit {
 	private mail : string;
 	private niveau : string;
 	private compteur : number;
-	private numero : number;
+	private adresse : number;
   constructor() { }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class CompteComponent implements OnInit {
   	this.nom = value[0].nom;
   	this.prenom = value[0].prénom;
   	this.ville = value[0].ville;
-  	this.numero = value[0].numero;
+  	this.adresse = value[0].adresse;
     
   	if(value[0].Admin == 1){
   		this.niveau = 'Administrateur';

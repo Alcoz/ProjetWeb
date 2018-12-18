@@ -42,13 +42,11 @@ export class BiensCompteComponent implements OnInit {
   }
 
   sendInfos(param){
-    this.mailProp = param.mailProp;
+    var value = 'true';
+    localStorage.setItem('descriptif', JSON.stringify(param));
+    this.router.navigate(['/recherche/descriptif']);
   }
 
-  getMail(){
-    return JSON.stringify(this.mailProp);
-  }
-  
   sendInfosFull(param){
     this.composant = param;
   }

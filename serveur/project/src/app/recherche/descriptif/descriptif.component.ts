@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BiensCompteComponent } from  '../biens-compte/biens-compte.component'
 import { BiensService} from '../../services/biens.service'
 import { Router } from '@angular/router';
 
@@ -13,9 +12,10 @@ export class DescriptifComponent implements OnInit {
 
   private affichage : boolean;
   private isLogged : boolean;
+  private infos : Object;
   
   constructor(private router : Router, private service : BiensService) { }
-
+  
   ngOnInit() {
   	var value = JSON.parse(localStorage.getItem("isLoggedIn"));
   	if(JSON.parse(value) === true){
@@ -24,21 +24,15 @@ export class DescriptifComponent implements OnInit {
   		this.isLogged = false;
   	}
 
-  	let biensCompte = new BiensCompteComponent(this.service, this.router);
-    var mail = biensCompte.getMail;
+    var desc = JSON.parse(localStorage.getItem("descriptif"));
+    this.infos = desc;
 
     var tempo = JSON.parse(localStorage.getItem("compte"));
-    var mailIn = tempo[0].mail;
-    console.log(mail);
-    console.log(mail);
-    console.log(mailIn);
+    var mail = tempo[0].mail;
 
-    if(mail.length == mailIn.length){
-      console.log("vrai");
+    if(mail == desc.mailProp){
       this.affichage = false;
-    }
-    else{
-      console.log("faux");
+    }else{
       this.affichage = true;
     }
   }

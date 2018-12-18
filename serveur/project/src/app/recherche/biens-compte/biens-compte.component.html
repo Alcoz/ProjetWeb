@@ -15,9 +15,7 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-warning btn-lg">Bien</button></div>
 		        <div class="row"> <p>Nom : {{composant.nom}}</p> </div>
-		        <div class="row"> <p>Durée : 3 jours</p> </div>
-		        <div class="row"> <p>Proposé par : Robert</p> </div>
-		        <div class="row"> <p>ça = {{composant.Actif}}</p> </div>
+		        <div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
 	        </div>
 	        <div class="col-lg-3">
 				  {{composant.descriptif}}
@@ -25,7 +23,7 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<br>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfos(composant)">Voir</button>
+	      			<button type="button" class="btn btn-primary" (click)="sendInfos(composant)">Voir</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
 	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-bien" (click)="sendInfosFull(composant)">Modifier</button>
@@ -44,8 +42,7 @@
 		    </div>
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-info btn-lg">Service</button></div>
-		        <div class="row"> <p>Durée : 3 jours</p> </div>
-		        <div class="row"> <p>Proposé par : Robert</p> </div>
+		        <div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
 	        </div>
 	        <div class="col-lg-3">
 				  {{composant.descriptif}}

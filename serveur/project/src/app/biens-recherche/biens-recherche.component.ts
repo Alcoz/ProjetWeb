@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BiensService } from '../services/biens.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-biens-recherche',
@@ -9,21 +10,40 @@ import { BiensService } from '../services/biens.service';
 export class BiensRechercheComponent implements OnInit {
 
   private biens : Object[];
-  value = '';
-  test = '';
+  private listMotsClefs : string[] = [];
 
-  constructor(private service : BiensService) { }
-
-  onKey(values : string) {
-    this.value = values;
-    console.log(this.value);
-    this.service.getBiens(this.value).subscribe(res => {
-   		this.biens = res;  
-    	console.log(this.biens);  
-    });
-  }
+  constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
   }
 
+  simpleSearch(param) {
+    this.service.getBiens(param).subscribe(res => {
+       this.biens = res;  
+      console.log(this.biens);  
+    });
+  }
+
+  sendInfos(param){
+    var value = 'true';
+    localStorage.setItem('descriptif', JSON.stringify(param));
+    this.router.navigate(['/recherche/descriptif']);
+  }
+
+  complexSearch() {
+    let infos = {
+      motClef : this.biens
+    }
+    this.service.getBiensMotClef(infos).subscribe()
+  }
+
+  add(param){
+    this.listMotsClefs.push(param);
+    this.complexSearch();
+  }
+
+  suppr(){
+    this.listMotsClefs.pop();
+    this.complexSearch();
+  }
 }

@@ -13,59 +13,34 @@
 			</div>
 			<div class="col-lg-6" id="infosProfil">
 				<div class="row" id="nomProfil">
-					Van Iseghem Pierre
+					{{this.infos.nom}}
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-lg-2">
-						<p>Adresse : </p> 
+						<p> Descriptif: </p> 
 					</div>
 					<div class="col-lg-1"></div>
 					<div class="col-lg-6">
-						29 place Jules Romains
+						{{this.infos.descriptif}}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-2">
-						<p>Numéro : </p> 
+					<div class="col-lg-3">
+						<p>Mail du proriétaire: </p> 
 					</div>
-					<div class="col-lg-1"></div>
 					<div class="col-lg-6">
-						0654585478
-					</div>
-					<br>
-				</div>
-				<div class="row">
-					<div class="col-lg-2">
-						<p>Mail : </p> 
-					</div>
-					<div class="col-lg-1"></div>
-					<div class="col-lg-6">
-						pierre.vaniseghem@gmail.com
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-2">
-						<p>Niveau : </p> 
-					</div>
-					<div class="col-lg-1"></div>
-					<div class="col-lg-6 text">
-						Admin
+						{{this.infos.mailProp}}
 					</div>
 				</div>
 				<div class="row"><br></div>
 				<div class="row" *ngIf="affichage">
 					<div class="col-lg-2">
-						<button type="button" class="btn btn-primary">Emprunt</button>
+						<button type="button" class="btn btn-primary">Emprunter</button>
 					</div>
 				</div>
 				<div class="row" *ngIf="!affichage">
-					<div class="col-lg-2">
-						<button type="button" class="btn btn-primary">Modifier</button>
-					</div>
-					<div class="col-lg-2">
-						<button type="button" class="btn btn-primary">Supprimer</button>
-					</div>
+					<h3>Il s'agit d'un bien/service que vous proposez</h3>
 				</div>
 			</div>
 		</div>

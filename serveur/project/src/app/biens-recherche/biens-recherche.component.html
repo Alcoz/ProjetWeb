@@ -8,53 +8,58 @@
   <br/><br/>
 </div>
 
-<div class="input-group">
-  <input type="text" class="form-control" aria-label="Text input with dropdown button">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </div>
-</div>
-
 <div class="container-fluid">
-	<div class="row centered">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-2">
-			<input #box (keyup)="onKey(box.value)">
+	<div class="col-lg-6">
+		<div style="padding-bottom: 20px;">
+			<h3>Recherche par nom</h3>
+			<input #boxNom (keyup)="simpleSearch(boxNom.value)">
 		</div>
-		<div class="col-lg-2">
-			<div class="form-check">
-		    	<input type="checkbox" class="form-check-input" id="lesBiens">
-		    	<label class="form-check-label" for="lesBiens"> Biens</label>
-			</div>
-			<div class="form-check">
-		    	<input type="checkbox" class="form-check-input" id="lesServices">
-		    	<label class="form-check-label" for="lesServices"> Services</label>
-		  	</div>
+		<div class="list-group">
+		  <div class="row" id="item" *ngFor="let bien of biens">
+			<br>
+			<div class="col-lg-3">
+		        <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+		    </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-warning btn-lg">Bien</button></div>
+		        <div class="row"> <p>Nom : {{bien.nom}}</p> </div>
+		        <div class="row"> <p>Proposé par : {{bien.mailProp}}</p> </div>
+		    </div>
+		    <div class="col-lg-3">
+				  {{bien.descriptif}}
+		    </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<br>
+		  		<div class="row" style="padding-bottom: 3px; padding-top: 40px;">
+		  			<button type="button" class="btn btn-primary" (click)="sendInfos(bien)" style="padding: 15px;">
+		  			Voir
+		  			</button>
+		  		</div>
+		    </div>
+		  </div>
 		</div>
 	</div>
-</div>
-
-<h3>Résultats :</h3>
-<div class="list-group">
-  <div class="row" *ngFor="let bien of biens">
-  	<a href="#" class="list-group-item list-group-item-action">
-		<div class="col-lg-3">
-			<img src="assets/img/logo.png" width="150" height="150" class="d-inline-block align-top" alt="">
+	<div class="col-lg-6">
+		<div style="padding-bottom: 20px;">
+			<h3>Recherche par mots-clefs</h3>
+			 <div class="row" style="padding-bottom: 15px;">
+			  	<div class="col-lg-3">
+			  		<input #box id='box'>
+			  	</div>
+			  	<div class="col-lg-1">
+			  		<button class="btn btn-primary" (click)="add(box.value)">Ajouter</button>
+			  	</div>
+			  	<div class="col-lg-1" style="padding-left: 30px;">
+			  		<button class="btn btn-primary" (click)="suppr()">Supprimer</button> 
+			  	</div>	
+			 </div>
+			 <div class="row" style="padding-bottom: 30px">
+				<div *ngFor="let value of listMotsClefs">
+				  	<div class='col-lg-1'>
+				  		<h4>{{value}}</h4>
+				    </div>
+				</div>
+		     </div>
 		</div>
-		<div class="col-lg-3">
-			<div class="row">Nom : {{bien.nom}}</div>
-			<div class="row"> Prix : {{bien.prixNeuf}} €</div>
-		</div>
-		<div class="col-lg-6">
-			{{bien.descriptif}}
-		</div>
-	</a>
-  </div>
+	</div>
 </div>
