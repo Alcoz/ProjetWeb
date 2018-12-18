@@ -157,12 +157,27 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 
 	app.get('/biensAjout', (req, res) => {
-		if(db.collection("membres").find(req.query).count()===0){
-			db.collection("biens").insertOne(req.query);
-			console.log("Ajout réussi");
-		} else {
-			console.log("Ce bien existe déjà");
-		}
+		db.collection("biens").insertOne({
+			"nom": req.query["biens"],
+			"descriptif": req.query["descriptif"],
+			"prixNeuf": req.query["prix"],
+			"Actif": 1,
+			"mailProp": req.query["mailProp"]
+		});
+
+		let rech = [];
+		db.collection("biens").find({"nom": req.query["biens"], "mailProp": req.query["mailProp"]})
+		.toArray((err, documents) =>{
+			for (let doc of documents){
+				rech.push(doc);
+			};
+			for(let j of json){
+				db.collection("descriptifBiens").insertOne({"idBien" : j._id, "motClef" : req.query["motClef"]});
+			}
+		})
+		let json = [];
+		res.setHeader("Content-type", "application/json");
+		res.end(JSON.stringify(json));
 	});
 
 	app.get('/bienSupp/', (req, res) => {
@@ -272,3 +287,4 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 });
 
 app.listen(8888);
+/*biensAjout?nom=Tournevis&detscriptif=tourne et retourne&prix=10&mailProp=baptiste-darnala@hotmail.fr&motClef=["Outils"]*/
