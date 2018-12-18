@@ -332,12 +332,16 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	app.get('/disponibilitesAjout', (req, res) =>{
 		db.collection("disponibilites").find({"idBienOuService": req.query["idBienOuService"]})
 		.toArray((err, documents) =>{
-			let json = []
-			for(let doc of douments){
-				let rdd = new Date(req.dateDebut);
+			let json = [];
+			let rdd = new Date(req.dateDebut);
+			let rdf = new Date(req.dateFin);
 
-				if(doc.dateDebut === req.dateDebut){
-					
+			for(let doc of douments){
+				let ddd = new Date(doc.dateDebut);
+				let ddf = new Date(doc.dateFin);
+
+				if((rdd > ddf) && (rdf < ddd)){
+
 				}
 			}
 		});
@@ -408,15 +412,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		res.end(JSON.stringify(json));
 	});
 
-	app.get('/ban', (req, res) =>{
-		console.log(req.query["_id"]);
-		db.collection("membres").deleteOne({"_id": req.query["_id"]});
+	app.get('/ban', (req, res) => {
+		db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
 		db.collection("biens").deleteMany({"mailProp": req.query["mail"]});
 		db.collection("biens")
 		.find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
 			for(let doc of documents){
-				console.log(doc._id);
 				db.collection("descriptifBiens").deleteOne({"idBien": doc._id});
 			}
 		});
