@@ -298,7 +298,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/avertissement', (req, res) =>{
 
-		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 0}});
+		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 1}});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
@@ -306,19 +306,23 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/suppAvertissement', (req, res) =>{
 
-		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 1}});
+		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 0}});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
 	});
 
 	app.get('/ban', (req, res) =>{
-		db.collection("membres").remove({"_id": ObjectId(req.query["_id"])});
+
+	//	db.collection("membres").deleteOne({"_id": ObjectId(req.query["id"])});
 		db.collection("biens").find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
-			db.collection("descriptifBiens").remove({"idBien": ObjectId(documents[0]._id)});
+			for(doc of documents){
+				console.log(doc);
+				//db.collection("descriptifBiens").deleteOne({"idBien": ObjectId(doc._id)});
+			}
 		});
-		db.collection("biens").remove({"mailProp": req.query["mail"]});
+		//db.collection("biens").deleteOne({"mailProp": req.query["mail"]});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
