@@ -158,7 +158,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/biensAjout', (req, res) => {
 		db.collection("biens").insertOne({
-			"nom": req.query["biens"],
+			"nom": req.query["nom"],
 			"descriptif": req.query["descriptif"],
 			"prixNeuf": req.query["prix"],
 			"Actif": 1,
@@ -166,7 +166,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		});
 
 		let rech = [];
-		db.collection("biens").find({"nom": req.query["biens"], "mailProp": req.query["mailProp"]})
+		db.collection("biens").find({"nom": req.query["nom"], "mailProp": req.query["mailProp"]})
 		.toArray((err, documents) =>{
 			for (let doc of documents){
 				rech.push(doc);
