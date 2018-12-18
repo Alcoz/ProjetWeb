@@ -156,24 +156,22 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 
-	app.get('/biensAjout', (req, res) => {
+	app.post('/biensAjout', (req, res) => {
 		db.collection("biens").insertOne({
-			"nom": req.query["nom"],
-			"descriptif": req.query["descriptif"],
-			"prixNeuf": req.query["prix"],
+			"nom": req.body.nom,
+			"descriptif": req.body.descriptif,
+			"prixNeuf": req.body.prix,
 			"Actif": 1,
-			"mailProp": req.query["mailProp"]
+			"mailProp": req.body.mailProp
 		});
 
 		let rech = [];
-		db.collection("biens").find({"nom": req.query["nom"], "mailProp": req.query["mailProp"]})
+		db.collection("biens").find({"nom": req.body.nom, "mailProp": req.body.mailProp})
 		.toArray((err, documents) =>{
 			for (let doc of documents){
 				rech.push(doc);
 			};
-			for(let j of json){
-				db.collection("descriptifBiens").insertOne({"idBien" : j._id, "motClef" : req.query["motClef"]});
-			}
+			console.log(rech);
 		})
 		let json = [];
 		res.setHeader("Content-type", "application/json");
