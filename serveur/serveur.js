@@ -227,7 +227,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		})
 	});
 
-	//Ajout et suppression des biens
+	//Ajout, modification et suppression des biens
 	app.post('/biensAjout', (req, res) => {
 		db.collection("biens").insertOne({
 			"nom": req.body.nom,
@@ -242,6 +242,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		res.end(JSON.stringify(json));
 	});
 
+	app.get('/bienModif', (req, res) =>{
+		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"nom": req.query["nom"], "descriptif": req.query["descriptif"], "prixNeuf": req.query["prixNeuf"]}}
+	});
+
 	app.get('/bienSupp/', (req, res) => {
 		db.collection("biens").updateOne({"_id": req.query["_id"]}, {$set: {"Actif": 0}});
 
@@ -250,7 +254,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		res.end(JSON.stringify(json));
 	});
 
-	//Ajout et suppression des services
+	//Ajout, modification et suppression des services
 
 	app.post('/serviceAjout', (req, res) => {
 		db.collection("service").insertOne({
@@ -262,6 +266,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
+	});
+
+	app.get('/serviceModif', (req, res) =>{
+		db.collection("service").updateOne({"_id": req.query["_id"]}, {$set: {"descriptif": req.query["descriptif"], "prix": req.query["prix"]}})
 	});
 
 	app.get('/serviceSupp/', (req, res) => {
