@@ -313,7 +313,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/ban', (req, res) =>{
-	//	db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
+		db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
 		db.collection("biens")
 		.find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
