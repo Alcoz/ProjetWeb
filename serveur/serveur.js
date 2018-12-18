@@ -301,9 +301,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/ban', (req, res) =>{
 		db.collection("membres").remove({"_id": ObjectId(req.query["_id"])});
-		db.collection("biens").find("mailProp": req.query["mail"])
+		db.collection("biens").find({"mailProp": req.query["mail"]})
 		.toArray((err, documents) =>{
-			db.collection("descriptifBiens").remove("idBien": ObjectId(documents._id));
+			db.collection("descriptifBiens").remove({"idBien": ObjectId(documents[0]._id)});
 		});
 		db.collection("biens").remove({"mailProp": req.query["mail"]});
 		let json = [];
