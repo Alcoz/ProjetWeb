@@ -1,18 +1,6 @@
 [
-  {
-    "idBien" : "5bf679b38aafe18495a4093e",
-    "motClef" : ["Outils", "Marteau"]
-  },
-  {
-    "idBien" : "5bf679b38aafe18495a4093f",
-    "motClef" : ["Voiture","BMW"]
-  },
-  {
-    "idBien" : "5bf679b38aafe18495a40940",
-    "motClef" : ["Cafetiere"]
-  },
-  {
-    "idBien" : "5bf67d281759100a29bd2b93",
-    "motClef" : ["Chaussures","Baskets"]
-  }
+  {"_id":"5c18e217c95cfa95a7e36309","idBien":"5bf679b38aafe18495a4093e","motClef":["Outils","Marteau"]},
+  {"_id":"5c18e217c95cfa95a7e3630a","idBien":"5bf679b38aafe18495a40940","motClef":["Cafetiere"]},
+  {"_id":"5c18e217c95cfa95a7e3630b","idBien":"5bf67d281759100a29bd2b93","motClef":["Chaussures","Baskets"]},
+  {"_id":"5c18e217c95cfa95a7e3630c","idBien":"5bf679b38aafe18495a4093f","motClef":["Voiture","BMW"]}
 ]

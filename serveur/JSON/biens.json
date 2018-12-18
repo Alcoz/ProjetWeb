@@ -1,32 +1,6 @@
 [
-	{ "_id": "5bf679b38aafe18495a4093e",
-	  "nom": "Marteau",
-	  "descriptif": "Bon marteau",
-	  "lienPhoto": "assets/img/logo.png",
-	  "prixNeuf": 20,
-		"Actif": 1,
-		"mailProp": "baptiste-darnala@hotmail.fr"
-	},
-	{ "_id": "5bf679b38aafe18495a4093f",
-	  "nom": "BMW serie 3",
-	  "descriptif": "Belle voiture",
-	  "lienPhoto": "assets/img/logo.png",
-	  "prixNeuf": 22000,
-	 	"Actif" : 1,
-		"mailProp": "Dupont-Laurent@gmail.com"
-	},
-	{ "_id": "5bf679b38aafe18495a40940",
-	  "nom": "cafetiere",
-	  "descriptif": "Fait du bon cafe",
-	  "lienPhoto": "assets/img/logo.png",
-	  "prixNeuf": 70,
-	  "Actif" : 1,
-	 	"mailProp": "baptiste-darnala@hotmail.fr"
-	},
-	{ "_id": "5bf67d281759100a29bd2b93",
-	  "nom": "chaussures",
-	  "descriptif": "tres comfortable",
-	  "lienPhoto": "assets/img/logo.png",
-	  "Actif" : 1,
-	  "prixNeuf": "70" }
+  {"_id":"5bf679b38aafe18495a4093e","nom":"Marteau","descriptif":"Bon marteau","lienPhoto":"assets/img/logo.png","prixNeuf":20,"Actif":1,"mailProp":"baptiste-darnala@hotmail.fr"},
+  {"_id":"5bf679b38aafe18495a4093f","nom":"BMW serie 3","descriptif":"Belle voiture","lienPhoto":"assets/img/logo.png","prixNeuf":22000,"Actif":1,"mailProp":"Dupont-Laurent@gmail.com"},
+  {"_id":"5bf679b38aafe18495a40940","nom":"cafetiere","descriptif":"Fait du bon cafe","lienPhoto":"assets/img/logo.png","prixNeuf":70,"Actif":1,"mailProp":"baptiste-darnala@hotmail.fr"},
+  {"_id":"5bf67d281759100a29bd2b93","nom":"chaussures","descriptif":"tres comfortable","lienPhoto":"assets/img/logo.png","Actif":1,"prixNeuf":"70"}
 ]
