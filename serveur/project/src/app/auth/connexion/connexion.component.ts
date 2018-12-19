@@ -30,11 +30,14 @@ export class ConnexionComponent implements OnInit {
   connexion(){
     let infos = {
       mail : this.mail,
-      mdp : this.mdp,
+      MDP : this.mdp
     }
 
+    console.log(infos);
     this.service.connexion(infos)
     .subscribe(data => this.resultat = data)
+
+    console.log(this.resultat);
 
     if(Object.keys(this.resultat).length != 0){
       var value = 'true';

@@ -24,6 +24,7 @@ export class CompteComponent implements OnInit {
   ngOnInit() {
   	var compte = localStorage.getItem("compte");
   	var value = JSON.parse(compte);
+    console.log(value[0]);
     this._id = value[0]._id;
   	this.mail = value[0].mail;
   	this.nom = value[0].nom;
@@ -40,6 +41,8 @@ export class CompteComponent implements OnInit {
   		this.niveau = 'Utilisateur';
       this.niveauChiffre = 0;
   	}
+
+    this.avertissement = value[0].avert;
   }
   
   avertissementSuppr(param){

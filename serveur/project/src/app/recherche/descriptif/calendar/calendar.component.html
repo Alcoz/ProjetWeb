@@ -1,6 +1,21 @@
-
-<div>
-	<button class="btn btn-primary" (click)="valider()">Valider</button>
+<div class="col-lg-6">
+	<p-calendar [(ngModel)]="date" [monthNavigator]="true" (onSelect)="ajoutDate()"></p-calendar>
 </div>
-
-<p-calendar [(ngModel)]="date" [monthNavigator]="true" (onSelect)="ajoutDate()"></p-calendar>
+<div class="col-lg-6">
+	<button class="btn btn-primary" (click)="supprimer()" style="padding-left: 15px;">Supprimer</button>
+	<div class="row" style="padding-bottom: 15px;">
+		<h4>Date de début :</h4>
+		<div>
+			{{this.tableauDate[0]}}
+		</div>
+	</div>
+	<div class="row" style="padding-bottom: 15px;">
+		<h4>Date de fin :</h4>
+		<div>
+			{{this.tableauDate[1]}}
+		</div>
+	</div>
+	<div class="row">
+		<button class="btn btn-primary" (click)="valider()">Valider</button>
+	</div>
+</div>

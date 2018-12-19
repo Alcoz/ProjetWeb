@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BiensService } from '../../../../services/biens.service';
 import { Router } from '@angular/router';
+import { CalendarComponent} from '../../../../recherche/descriptif/calendar/calendar.component'
 
 @Component({
   selector: 'app-ajout-bien',
@@ -14,7 +15,7 @@ export class AjoutBienComponent implements OnInit {
   private descriptif : string;
   private prix : string;
   
-  constructor(private service : BiensService, private router : Router) { }
+  constructor(private service : BiensService, private router : Router, private calendar : CalendarComponent) { }
 
   ngOnInit() {
   }
@@ -31,16 +32,25 @@ export class AjoutBienComponent implements OnInit {
     var tempo = JSON.parse(localStorage.getItem("compte"));
     var mail = tempo[0].mail;
 
+    let tableauDate : Date[];
+    tableauDate = this.calendar.getDates();
+
+    console.log(tableauDate[0]);
+    console.log(tableauDate[1]);
+
     let infos = {
       nom : this.nom,
       descriptif : this.descriptif,
       prix : this.prix,
       motClef : this.listMotsClefs,
-      mailProp : mail
+      mailProp : tempo[0].mail,
+      _id : tempo[0]._id,
+      dateDebut : tableauDate[0],
+      dateFin : tableauDate[1]
     }
 
     this.service.ajouterBienUtilisateur(infos)
-    .subscribe()
+    .subscribe();
 
     this.router.navigate(['/auth/compte']);
   }

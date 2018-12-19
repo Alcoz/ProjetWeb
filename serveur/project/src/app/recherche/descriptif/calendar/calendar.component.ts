@@ -12,7 +12,7 @@ import { BiensService} from '../../../services/biens.service'
 export class CalendarComponent implements OnInit {
 
   private date: Date;
-  private tableauDate : Date[];
+  private tableauDate : Date[] = [];
 
   constructor(private service : BiensService) { }
 
@@ -25,7 +25,11 @@ export class CalendarComponent implements OnInit {
   	}
   }
 
-  valider(){
-  	this.service.ajouterDates(this.tableauDate[0], this.tableauDate[1]).subscribe();
-  }	
+  supprimer(){
+    this.tableauDate.pop();
+  }
+
+  getDates(){
+    return this.tableauDate;
+  }
 }

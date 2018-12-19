@@ -7,8 +7,9 @@
     "prenom":"Laurent",
     "Admin": 0,
     "ville":"Montpellier",
-    "adresse":"41 Rue du Faubourg Boutonnet"
-    ,"score":-5},
-  {"_id":"5c18e217c95cfa95a7e362f5","mail":"baptiste-darnala@hotmail.fr","MDP":"123456","nom":"Darnala","prenom":"Baptiste","Admin":1,"ville":"Montpellier","adresse":"125 Avenue Augustin Fliche","score":99999},
-  {"_id":"5c18e217c95cfa95a7e362f6","mail":"Porto-Dylan@gmail.com","MDP":"voiture","nom":"Porto","prenom":"Dylan","Admin":0,"ville":"Paris","adresse":"18 Rue des Bourdonnais","score":79}
+    "adresse":"41 Rue du Faubourg Boutonnet",
+    "score":-5,
+    "avert":0},
+  {"_id":"5c18e217c95cfa95a7e362f5","mail":"baptiste-darnala@hotmail.fr","MDP":"123456","nom":"Darnala","prenom":"Baptiste","Admin":1,"ville":"Montpellier","adresse":"125 Avenue Augustin Fliche","score":99999, "avert":0},
+  {"_id":"5c18e217c95cfa95a7e362f6","mail":"Porto-Dylan@gmail.com","MDP":"voiture","nom":"Porto","prenom":"Dylan","Admin":0,"ville":"Paris","adresse":"18 Rue des Bourdonnais","score":79, "avert":0}
 ]
