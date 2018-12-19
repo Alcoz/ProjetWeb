@@ -184,7 +184,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 		console.log(req.query["nom"]);
 		db.collection("service")
-		.find({"nom": new RegExp(req.query["nom"], "i")})
+		.find({"descriptif": new RegExp(req.query["descriptif"], "i")})
 		.toArray((err, documents)=> {
 			 // la création de json ne sert à rien ici
 			 // on pourrait directement renvoyer documents
@@ -351,7 +351,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/emprunt', (req, res) =>{
-		
+
 	});
 
 	app.get('/empruntDate', (req, res) =>{
