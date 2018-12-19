@@ -32,7 +32,7 @@ export class CompteComponent implements OnInit {
   	this.ville = value[0].ville;
   	this.adresse = value[0].adresse;
     this.compteur = value[0].score;
-    
+
   	if(value[0].Admin == 1){
   		this.niveau = 'Administrateur';
       this.niveauChiffre = 1;
@@ -44,9 +44,10 @@ export class CompteComponent implements OnInit {
 
     this.avertissement = value[0].avert;
   }
-  
+
   avertissementSuppr(param){
     this.service.avertissementSuppr(param).subscribe();
+    this.avertissement = 0;
     window.location.reload();
   }
 }

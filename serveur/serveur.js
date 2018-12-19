@@ -37,7 +37,8 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 					"Admin" : 0,
 					"ville" : req.body.ville,
 					"adresse" : req.body.adresse,
-					"score" : 0
+					"score" : 0,
+					"avert" : 0
 				});
 
 				db.collection("membres").find({"mail": req.body.mail})
@@ -58,16 +59,15 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.post('/connexion', (req, res) => {
-		db.collection("membres").find({"mail": req.body.mail, "MDP": req.body.mdp}).count()
+		console.log(req.body.mail + " | "+ req.body.MDP);
+		db.collection("membres").find({"mail": req.body.mail, "MDP": req.body.MDP}).count()
 		.then(function(numItems){
 			if(numItems===1){
 				console.log("Connecter");
 				db.collection("membres")
 				.find({"mail": req.body.mail})
 				.toArray((err, documents)=> {
-					 // la création de json ne sert à rien ici
-					 // on pourrait directement renvoyer documents
-					 console.log("bon");
+
 					let json = [];
 					for (let doc of documents) {
 						json.push(doc);
@@ -340,22 +340,87 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 				let ddd = new Date(doc.dateDebut);
 				let ddf = new Date(doc.dateFin);
 
-				if((rdd > ddf) && (rdf < ddd)){
+				if(((rdd > ddf) && (rdf < ddd)) || ((rdd < ddd) && (rdf > ddf))){
+					let json = [];
+					res.setHeader("Content-type", "application/json");
+					res.end(JSON.stringify(json));
+				} else {
+					let d1 = rdd.getDate();
+					let d2 = rdf.getDate();
+					let ecart;
+					if(d1>d2){
+						ecart= (d2 + 30) - d1;
+					}
+
+					for(let i = 0; i < ecart; i++){
+						if(d1 + i <= 31){
+							let d = new Date(rdd.getFullYear(), rdd.getMonth(), d1 + i);
+							db.collection("disponibilites").insertOne({
+								"bienOuService" : req.query["bienOuService"],
+								"idBienOuService" : req.query["idBienOuService"],
+								"date": d,
+								"AMPM": "AM"
+							});
+							db.collection("disponibilites").insertOne({
+								"bienOuService" : req.query["bienOuService"],
+								"idBienOuService" : req.query["idBienOuService"],
+								"date": d,
+								"AMPM": "PM"
+							});
+						} else {
+							let d = new Date(rdf.getFullYear(), rdf.getMonth(), d1 + i - 31);
+							db.collection("disponibilites").insertOne({
+								"bienOuService" : req.query["bienOuService"],
+								"idBienOuService" : req.query["idBienOuService"],
+								"date": d,
+								"AMPM": "AM"
+							});
+							db.collection("disponibilites").insertOne({
+								"bienOuService" : req.query["bienOuService"],
+								"idBienOuService" : req.query["idBienOuService"],
+								"date": d,
+								"AMPM": "PM"
+							});
+						}
+					}
 					let json = [];
 					res.setHeader("Content-type", "application/json");
 					res.end(JSON.stringify(json));
 				}
 			}
-
 		});
 	});
 
-	app.get('/emprunt', (req, res) =>{
-
+	app.get('/utilisations', (req, res) =>{
+		db.collection("utilisations").insertOne({
+			"bienOuService": req.query["bienOuService"],
+			"idBienOuService": req.query["idBienOuService"],
+			"idDispo" : req.query["idDispo"]
+		});
 	});
 
 	app.get('/empruntDate', (req, res) =>{
 
+		db.collection("disponibilites").aggregate([
+			{
+				$lookup:
+				{
+					from: "utilisations",
+					localField: "_id",
+					foreignField: "idDispo",
+					as: "emprunter"
+				}
+			}
+		]).toArray(function(err, res2) {
+			let json = [];
+			for(let r of res2){
+				if(r.emprunter != []){
+					json.push(r);
+				}
+			}
+			res.setHeader("Content-type", "application/json");
+			res.end(JSON.stringify(json));
+		});
 	});
 
 
@@ -400,8 +465,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	app.get('/avertissement', (req, res) =>{
-
-		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 1}});
+		db.collection("membres").updateOne({"_id": req.query["_id"]}, {$set: {"avert": 1}});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
@@ -409,14 +473,14 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	app.get('/suppAvertissement', (req, res) =>{
 
-		db.collection("membres").updateOne({"_id": ObjectId(req.query["_id"])}, {$set: {"avert": 0}});
+		db.collection("membres").updateOne({"_id": req.query["_id"]}, {$set: {"avert": 0}});
 		let json = [];
 		res.setHeader("Content-type", "application/json");
 		res.end(JSON.stringify(json));
 	});
 
 	app.get('/ban', (req, res) => {
-		db.collection("membres").deleteOne({"_id": ObjectId(req.query["_id"])});
+		db.collection("membres").deleteOne({"_id": req.query["_id"]});
 		db.collection("biens").deleteMany({"mailProp": req.query["mail"]});
 		db.collection("biens")
 		.find({"mailProp": req.query["mail"]})
