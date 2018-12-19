@@ -23,4 +23,14 @@ export class ConnexionService {
 	   };
   	return this.http.post(this.url + "connexion", JSON.stringify(infos), httpOptions);
   }
+
+  inscription(infos){
+    const httpOptions = {
+        headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin' : 'GET, POST, PUT, DELETE, OPTIONS'
+      })
+     };
+     return this.http.post(this.url + "register", JSON.stringify(infos), httpOptions);
+  }
 }

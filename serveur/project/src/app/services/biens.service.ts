@@ -15,13 +15,16 @@ export class BiensService implements OnInit {
     return this.http.get<any>(this.url + "biensParam?nom=" + param);
   }
 
+  getServices(param):Observable<any>{
+    return this.http.get<any>(this.url + "serviceParam?nom=" + param);
+  }
+
   getBiensMotClef(param):Observable<any>{
     var tempo = '';
     for(let i = 0; i < param.length; i++){
       tempo += '"' + param[0] + '",';
     }
     tempo = tempo.slice(0,-1)
-    console.log(this.url + "biensMotClef?motClef=" + "[" + tempo + "]");
     return this.http.get<any>(this.url + "biensMotClef?motClef=" + "[" + tempo + "]");
   }
 
@@ -37,6 +40,10 @@ export class BiensService implements OnInit {
   	  return this.http.get<any>(this.url + "biensProp?mailProp=" + param);
   }
 
+  getServicesUtilisateur(param):Observable<any>{
+      return this.http.get<any>(this.url + "servicesProp?mailProp=" + param);
+  }
+  
   supprimerService(param):Observable<any>{
       console.log(param);
       return this.http.get<any>(this.url + "serviceSupp?_id=" + param);
@@ -65,13 +72,19 @@ export class BiensService implements OnInit {
   }
 
   supprimerUtilisateur(id, mail){
-    console.log(id);
-    console.log(this.url + "ban?_id=" + id + "&mail=" + mail);
     return this.http.get<any>(this.url + "ban?_id=" + id + "&mail=" + mail);
   }
 
   envoieAvertissement(param){
     return this.http.get<any>(this.url + "avertissement?_id=" + param);
+  }
+
+  avertissementSuppr(param){
+    return this.http.get<any>(this.url + "suppAvertissement?_id=" + param);
+  }  
+
+  ajouterDates(dateDebut, dateFin){
+    return this.http.get<any>(this.url + "avertissement?dateDebut=" + dateDebut + "&dateFin=" + dateFin);
   }
 
 }

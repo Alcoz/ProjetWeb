@@ -14,7 +14,8 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-warning btn-lg">Bien</button></div>
 		        <div class="row"> <p>Nom : {{composant.nom}}</p> </div>
-		        <div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
+       			<div class="row"> <p>Prix neuf : {{composant.prixNeuf}} €</p> </div>
+        		<div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
 	        </div>
 	        <div class="col-lg-3">
 				  {{composant.descriptif}}
@@ -22,10 +23,10 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<br>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" (click)="sendInfos(composant)">Voir</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfos(composant)">Voir</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-bien" (click)="sendInfosFull(composant)">Modifier</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-bien" (click)="sendInfos(composant)">Modifier</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
 	      			<button type="button" class="btn btn-primary" (click)="supprimerBien(composant._id)">Supprimer</button>
@@ -41,7 +42,8 @@
 		    </div>
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-info btn-lg">Service</button></div>
-		        <div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
+		        <div class="row"> <p>Prix : {{composant.prix}} €</p> </div>
+                <div class="row"> <p>Proposé par : {{composant.mailProp}}</p> </div>
 	        </div>
 	        <div class="col-lg-3">
 				  {{composant.descriptif}}
@@ -49,10 +51,10 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<br>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="blbla(composant)">Voir</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/recherche/descriptif" (click)="sendInfos(composant)">Voir</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
-	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-service">Modifier</button>
+	      			<button type="button" class="btn btn-primary" routerLink="/auth/compte/modifier/modifier-service" (click)="sendInfos(composant)">Modifier</button>
 	      		</div>
 	      		<div class="row" style="padding-bottom: 3px;">
 	      			<button type="button" class="btn btn-primary" (click)="supprimerService(composant._id)">Supprimer</button>

@@ -10,20 +10,29 @@ import { Router } from '@angular/router';
 export class BiensRechercheComponent implements OnInit {
 
   private biens : Object[];
+  private services : Object[];
   private listMotsClefs : string[] = [];
   private biensMotClef : Object[];
 
   constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
-    this.service.getBiens('').subscribe(res => {
+    this.service.getAllBiens().subscribe(res => {
        this.biens = res;   
+    });
+
+    this.service.getAllServices().subscribe(res => {
+       this.services = res;   
     });
   }
 
   simpleSearch(param) {
     this.service.getBiens(param).subscribe(res => {
        this.biens = res;   
+    });
+
+    this.service.getServices(param).subscribe(res => {
+       this.services = res;   
     });
   }
 

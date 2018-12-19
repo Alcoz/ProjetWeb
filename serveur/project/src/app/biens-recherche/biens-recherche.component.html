@@ -23,10 +23,33 @@
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-warning btn-lg">Bien</button></div>
 		        <div class="row"> <p>Nom : {{bien.nom}}</p> </div>
-		        <div class="row"> <p>Proposé par : {{bien.mailProp}}</p> </div>
+          		<div class="row"> <p>Prix neuf : {{bien.prixNeuf}} €</p> </div>
+          		<div class="row"> <p>Proposé par : {{bien.mailProp}}</p> </div>
 		    </div>
 		    <div class="col-lg-3">
 				  {{bien.descriptif}}
+		    </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<br>
+		  		<div class="row" style="padding-bottom: 3px; padding-top: 40px;">
+		  			<button type="button" class="btn btn-primary" (click)="sendInfos(bien)">
+		  				Voir
+		  			</button>
+		  		</div>
+		    </div>
+		  </div>
+		  <div class="row" id="item" *ngFor="let service of services">
+			<br>
+			<div class="col-lg-3">
+		        <img src="assets/img/logo.png" width="200" height="200" class="d-inline-block align-top" alt="" style="padding-bottom: 15px;">
+		    </div>
+		    <div class="col-lg-3" style="text-align: center;">
+		    	<div class="row" style="padding-bottom: 10px"><button type="button" class="btn btn-info btn-lg">Service</button></div>
+         		<div class="row"> <p>Prix : {{service.prix}} €</p> </div>
+          		<div class="row"> <p>Proposé par : {{service.mailProp}}</p> </div>
+		    </div>
+		    <div class="col-lg-3">
+				  {{service.descriptif}}
 		    </div>
 		    <div class="col-lg-3" style="text-align: center;">
 		    	<br>

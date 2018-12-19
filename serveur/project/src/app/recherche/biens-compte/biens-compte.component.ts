@@ -24,11 +24,11 @@ export class BiensCompteComponent implements OnInit {
   	var object = JSON.parse(localStorage.getItem("compte"));
   	var mail = object[0].mail;
 
-  	/*this.service.getBiensUtilisateur(mail)
+  	this.service.getBiensUtilisateur(mail)
     .subscribe(data => {this.listBiensProp = data;});
 
-    this.service.getAllBiens(mail)
-    .subscribe(data => {this.listServicesProp = data;});*/
+    this.service.getServicesUtilisateur(mail)
+    .subscribe(data => {this.listServicesProp = data;});
   }
 
   supprimerService(param){
@@ -42,8 +42,6 @@ export class BiensCompteComponent implements OnInit {
   }
 
   sendInfos(param){
-    var value = 'true';
     localStorage.setItem('descriptif', JSON.stringify(param));
-    this.router.navigate(['/recherche/descriptif']);
   }
 }

@@ -1,3 +1,51 @@
-<p>
-  modifier-service works!
-</p>
+<app-header></app-header>
+
+<h3 style="text-align: center"> Modifier votre service </h3>
+<br><br>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10" id="profil">
+			<br>
+			<div class="col-lg-1"></div>
+			<div class="col-lg-3">
+				<img id="imageProfil" src="assets/img/bien.png" width="300" height="300" class="d-inline-block align-top" alt="" style="border : 1px black solid; padding-bottom: 15px;">
+			</div>
+			<div class="col-lg-6" id="infosProfil">
+				<form (ngSubmit)="callAjout()">
+				  <div class="form-group">
+				    <label>Descriptif</label>
+				    <input type="text" class="form-control" [(ngModel)]="descriptif" name="descriptif">
+				  </div>
+				  <div style="padding-bottom: 15px;">
+				    <label>Prix</label>
+				    <input type="email" class="form-control" [(ngModel)]="prix" name="prix">
+				  </div>
+				  <label>Les mots-clefs associés</label>
+				  <div class="row" style="padding-bottom: 15px;">
+				  	<div class="col-lg-3">
+				  		<input #box id='box'>
+				  	</div>
+				  	<div class="col-lg-1">
+				  		<button class="btn btn-primary" (click)="add(box.value)">Ajouter</button>
+				  	</div>
+				  	<div class="col-lg-1" style="padding-left: 30px;">
+				  		<button class="btn btn-primary" (click)="suppr()">Supprimer</button> 
+				  	</div>	
+				  </div>
+				  <div class="row" style="padding-bottom: 30px">
+					  <div *ngFor="let value of listMotsClefs">
+					  	<div class='col-lg-1'>
+					  		<h4>{{value}}</h4>
+					    </div>
+					  </div>
+			      </div>
+				  <div>
+				  	<button type="submit" class="btn btn-primary">Soumettre</button>
+				  </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

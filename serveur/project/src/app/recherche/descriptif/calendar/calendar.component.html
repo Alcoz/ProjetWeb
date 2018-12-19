@@ -1,1 +1,6 @@
-<p-calendar [(ngModel)]="value" ></p-calendar>
+
+<div>
+	<button class="btn btn-primary" (click)="valider()">Valider</button>
+</div>
+
+<p-calendar [(ngModel)]="date" [monthNavigator]="true" (onSelect)="ajoutDate()"></p-calendar>

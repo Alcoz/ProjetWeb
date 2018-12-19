@@ -21,7 +21,10 @@ export class ModifierBienComponent implements OnInit {
   constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
-  	var desc = JSON.parse(localStorage.getItem("descriptif"));
-    this.infos = desc;
+  	var infos = JSON.parse(localStorage.getItem("descriptif"));
+    console.log(infos);
+    this.nom = infos.nom;
+    this.descriptif = infos.descriptif;
+    this.prix = infos.prixNeuf;
   }
 }

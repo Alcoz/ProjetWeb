@@ -28,7 +28,6 @@ export class ListeUtilisateurComponent implements OnInit {
   supprimerUtilisateur(param){
   	this.service.supprimerUtilisateur(param._id, param.mail).subscribe();
     window.location.reload();
-
   }
 
   envoieAvertissement(param){

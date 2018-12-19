@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnexionService } from '../connexion/connexion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,11 +9,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  private nom : string;
+  private prenom : string;
+  private mail : string;
+  private mdp : string;
+  private ville : string;
+  private adresse : string;
+
+  private resultat : Object;
+
+  constructor(private service : ConnexionService, private router : Router) { }
 
   ngOnInit() {
   }
 
-  callConnexion(){
+  inscription(){
+  	let infos = {
+  	  nom : this.nom,
+  	  prenom : this.prenom,
+      mail : this.mail,
+      MDP : this.mdp,
+      ville : this.ville,
+      adresse : this.adresse
+    }
+
+    console.log(infos);
+
+    this.service.inscription(infos)
+    .subscribe(data => this.resultat = data)
+
+    console.log(this.resultat);
+
+    if(Object.keys(this.resultat).length != 0){
+      var value = 'true';
+      localStorage.setItem('isLoggedIn', value);
+      localStorage.setItem('compte', JSON.stringify(this.resultat));
+      this.router.navigate(['/auth/compte']);
+    }
+    else{
+       console.log("erreur");
+    }
   }
 }

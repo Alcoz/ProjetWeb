@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BiensService } from '../../services/biens.service';
 
 @Component({
   selector: 'app-compte',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteComponent implements OnInit {
 
-	private nom : string = 'test';
+  private _id : string;
+	private nom : string;
 	private prenom : string;
 	private ville : string;
 	private mail : string;
@@ -16,11 +18,13 @@ export class CompteComponent implements OnInit {
 	private compteur : number;
 	private adresse : number;
   private avertissement : number;
-  constructor() { }
+
+  constructor(private service : BiensService) { }
 
   ngOnInit() {
   	var compte = localStorage.getItem("compte");
   	var value = JSON.parse(compte);
+    this._id = value[0]._id;
   	this.mail = value[0].mail;
   	this.nom = value[0].nom;
   	this.prenom = value[0].prénom;
@@ -37,5 +41,9 @@ export class CompteComponent implements OnInit {
       this.niveauChiffre = 0;
   	}
   }
-
+  
+  avertissementSuppr(param){
+    this.service.avertissementSuppr(param).subscribe();
+    window.location.reload();
+  }
 }

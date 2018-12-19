@@ -18,7 +18,6 @@ import { HeaderComponent } from './header/header.component';
 import { CompteComponent } from './auth/compte/compte.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { RechercheComponent } from './recherche/recherche.component';
-import { ServicesComponent } from './recherche/services/services.component';
 import { BiensCompteComponent } from './recherche/biens-compte/biens-compte.component';
 import { EmpruntCompteComponent } from './recherche/emprunt-compte/emprunt-compte.component';
 import { DescriptifComponent } from './recherche/descriptif/descriptif.component';
@@ -30,6 +29,8 @@ import { ModifierBienComponent } from './auth/compte/modifier/modifier-bien/modi
 import { ModifierServiceComponent } from './auth/compte/modifier/modifier-service/modifier-service.component';
 import { ListeUtilisateurComponent } from './recherche/liste-utilisateur/liste-utilisateur.component';
 import { CalendarComponent } from './recherche/descriptif/calendar/calendar.component';
+import { BiensRecentsComponent } from './recherche/biens-recents/biens-recents.component';
+import { ServicesRecentsComponent } from './recherche/services-recents/services-recents.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,6 @@ import { CalendarComponent } from './recherche/descriptif/calendar/calendar.comp
     CompteComponent,
     AccueilComponent,
     RechercheComponent,
-    ServicesComponent,
     BiensCompteComponent,
     EmpruntCompteComponent,
     DescriptifComponent,
@@ -54,7 +54,9 @@ import { CalendarComponent } from './recherche/descriptif/calendar/calendar.comp
     ModifierBienComponent,
     ModifierServiceComponent,
     ListeUtilisateurComponent,
-    CalendarComponent
+    CalendarComponent,
+    BiensRecentsComponent,
+    ServicesRecentsComponent
   ],
   imports: [
     BrowserModule,

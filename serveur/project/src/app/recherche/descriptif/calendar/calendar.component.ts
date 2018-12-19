@@ -1,17 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { BiensService} from '../../../services/biens.service'
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css',
+  '../../../../../node_modules/primeng/resources/themes/nova-light/theme.css',
+  '../../../../../node_modules/primeng/resources/primeng.min.css',
+  '../../../../../node_modules/primeicons/primeicons.css']
 })
 export class CalendarComponent implements OnInit {
 
-  private value: Date;
+  private date: Date;
+  private tableauDate : Date[];
 
-  constructor() { }
+  constructor(private service : BiensService) { }
 
   ngOnInit() {
   }
 
+  ajoutDate(){
+  	if(this.tableauDate.length < 2){
+  		this.tableauDate.push(this.date);
+  	}
+  }
+
+  valider(){
+  	this.service.ajouterDates(this.tableauDate[0], this.tableauDate[1]).subscribe();
+  }	
 }

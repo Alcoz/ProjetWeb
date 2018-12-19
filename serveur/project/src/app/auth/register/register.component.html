@@ -1,32 +1,28 @@
 <h3>Formulaire d'inscription</h3>
-<form (ngSubmit)="callConnexion()">
+<form (ngSubmit)="inscription()">
   <div class="form-group">
     <label>Nom</label>
-    <input #nom type="text" class="form-control" name="nom">
+    <input type="text" class="form-control" [(ngModel)]="nom" name="nom">
   </div>
   <div class="form-group">
     <label>Prénom</label>
-    <input #prenom type="text" class="form-control" name="prenom">
+    <input type="text" class="form-control" [(ngModel)]="prenom" name="prenom">
   </div>
   <div>
     <label>Adresse email</label>
-    <input #mail type="email" class="form-control" name="mailInscription">
+    <input type="email" class="form-control" [(ngModel)]="mail" name="mail">
   </div>
   <div class="form-group">
     <label>Mot de passe</label>
-    <input #mdp type="password" class="form-control"name="mdpInscription">
+    <input type="password" class="form-control" [(ngModel)]="mdp" name="mdp">
   </div>
   <div class="form-group">
     <label>Ville</label>
-    <input #ville type="text" class="form-control" name="ville">
+    <input type="text" class="form-control" [(ngModel)]="ville" name="ville">
   </div>
   <div class="form-group">
     <label>Adresse</label>
-    <input #adresse type="text" class="form-control" name="adresse">
-  </div>
-  <div class="form-group">
-    <label>Téléphone</label>
-    <input #tel type="text" class="form-control" name="tel">
+    <input type="text" class="form-control" [(ngModel)]="adresse" name="adresse">
   </div>
   <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
