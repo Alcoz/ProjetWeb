@@ -181,14 +181,10 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	//Renvoi les biens selon un type de recheche différent
 	app.get('/serviceParam', (req, res) => {
 		res.setHeader("Access-Control-Allow-Origin", "*");
-
-		console.log(req.query["nom"]);
 		db.collection("service")
 		.find({"descriptif": new RegExp(req.query["descriptif"], "i")})
 		.toArray((err, documents)=> {
-			 // la création de json ne sert à rien ici
-			 // on pourrait directement renvoyer documents
-			console.log(req.query);
+
 			let json = [];
 			for (let doc of documents) {
 				json.push(doc);
@@ -246,23 +242,26 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 	});
 
 	//Ajout, modification et suppression des biens
-	app.post('/biensAjout', (req, res) => {
+	app.get('/biensAjout', (req, res) => {
+		console.log("jiop");
+
+		console.log(req.query);
 		db.collection("biens").insertOne({
-			"nom": req.body.nom,
-			"descriptif": req.body.descriptif,
-			"prixNeuf": req.body.prix,
+			"nom": req.query["nom"],
+			"descriptif": req.query["descriptif"],
+			"prixNeuf": req.query["prixNeufm"],
 			"Actif": 1,
-			"mailProp": req.body.mailProp
+			"mailProp": req.query["mailProp"]
 		});
 
-		db.collection("biens").find({"nom": req.body.nom, "mailProp": req.body.mailProp})
+		db.collection("biens").find({"nom": req.query["nom"], "mailProp": req.query["mailProp"]})
 		.toArray((err, documents) => {
 			for(let doc of documents){
 				db.collection("disponibilites").insertOne({
 					"bienOuService" : "bien",
 					"idBienOuService":	doc._id,
-					"dateDebut" : req.dateDebut,
-					"dateFin" : req.dateFin
+					"dateDebut" : req.query["dateDebut"],
+					"dateFin" : req.query["dateFin"]
 				})
 			}
 		})
@@ -289,22 +288,22 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 
 	//Ajout, modification et suppression des services
 
-	app.post('/serviceAjout', (req, res) => {
+	app.get('/serviceAjout', (req, res) => {
 		db.collection("service").insertOne({
-			"descriptif": req.body.descriptif,
-			"prix": req.body.prix,
-			"mailProp": req.body.mailProp,
+			"descriptif": req.query["descriptif"],
+			"prix": req.query["prix"],
+			"mailProp": req.query["mailProp"],
 			"Actif": 1
 		})
 
-		db.collection("services").find({"descriptif": req.body.descriptif, "mailProp": req.body.mailProp})
+		db.collection("services").find({"descriptif": req.query["descriptif"], "mailProp": req.query["mailProp"]})
 		.toArray((err, documents) => {
 			for(let doc of documents){
 				db.collection("disponibilites").insertOne({
 					"bienOuService" : "bien",
 					"idBienOuService":	doc._id,
-					"dateDebut" : req.dateDebut,
-					"dateFin" : req.dateFin
+					"dateDebut" : req.query["dateDebut"],
+					"dateFin" : req.query["dateFin"]
 				})
 			}
 		})
@@ -336,7 +335,7 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
 			let rdd = new Date(req.dateDebut);
 			let rdf = new Date(req.dateFin);
 
-			for(let doc of douments){
+			for(let doc of documents){
 				let ddd = new Date(doc.dateDebut);
 				let ddf = new Date(doc.dateFin);
 

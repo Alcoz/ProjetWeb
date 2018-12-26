@@ -18,12 +18,12 @@
 			    </div>
 				<form (ngSubmit)="callAjout()">
 				  <div class="form-group">
-				    <label>Nom</label>
-				    <input #nom type="text" class="form-control" name="nom">
-				  </div>
-				  <div class="form-group">
 				    <label>Descriptif</label>
-				    <input #descriptif type="text" class="form-control" name="Descriptif">
+				    <input type="text" class="form-control" [(ngModel)]="descriptif" name="descriptif">
+				  </div>
+					<div style="padding-bottom: 15px;">
+				    <label>Prix neuf</label>
+				    <input type="text" class="form-control" [(ngModel)]="prix" name="prix">
 				  </div>
 				  <label>Les mots-clefs associés</label>
 				  <div class="row" style="padding-bottom: 15px;">
@@ -34,8 +34,8 @@
 				  		<button class="btn btn-primary" (click)="add(box.value)">Ajouter</button>
 				  	</div>
 				  	<div class="col-lg-1" style="padding-left: 30px;">
-				  		<button class="btn btn-primary" (click)="suppr()">Supprimer</button> 
-				  	</div>	
+				  		<button class="btn btn-primary" (click)="suppr()">Supprimer</button>
+				  	</div>
 				  </div>
 				  <div class="row" style="padding-bottom: 30px">
 					  <div *ngFor="let value of listMotsClefs">
@@ -45,10 +45,20 @@
 					  </div>
 			      </div>
 				  <div>
-				  	<button type="submit" class="btn btn-primary">Soumettre</button>
+				  	<button type="submit" class="btn btn-primary" (click)="ajout()">Soumettre</button>
 				  </div>
 				</form>
 			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<br>
+	<div class="row" style="text-align: center;">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<app-calendar></app-calendar>
 		</div>
 	</div>
 </div>

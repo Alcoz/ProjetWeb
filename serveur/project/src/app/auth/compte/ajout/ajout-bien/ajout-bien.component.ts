@@ -14,8 +14,8 @@ export class AjoutBienComponent implements OnInit {
   private nom : string;
   private descriptif : string;
   private prix : string;
-  
-  constructor(private service : BiensService, private router : Router, private calendar : CalendarComponent) { }
+
+  constructor(private service : BiensService, private router : Router) { }
 
   ngOnInit() {
   }
@@ -32,11 +32,10 @@ export class AjoutBienComponent implements OnInit {
     var tempo = JSON.parse(localStorage.getItem("compte"));
     var mail = tempo[0].mail;
 
-    let tableauDate : Date[];
-    tableauDate = this.calendar.getDates();
+    var dates = JSON.parse(localStorage.getItem("dates"));
 
-    console.log(tableauDate[0]);
-    console.log(tableauDate[1]);
+    console.log(dates.dateDebut);
+    console.log(dates.dateFin);
 
     let infos = {
       nom : this.nom,
@@ -44,13 +43,14 @@ export class AjoutBienComponent implements OnInit {
       prix : this.prix,
       motClef : this.listMotsClefs,
       mailProp : tempo[0].mail,
-      _id : tempo[0]._id,
-      dateDebut : tableauDate[0],
-      dateFin : tableauDate[1]
+      idBienOuService : tempo[0]._id,
+      bienOuService : "bien",
+      dateDebut : dates.dateDebut,
+      dateFin : dates.dateFin
     }
 
-    this.service.ajouterBienUtilisateur(infos)
-    .subscribe();
+    this.service.ajouterBienUtilisateur(infos).subscribe();
+    this.service.ajouterDatesUtilisateur(infos).subscribe();
 
     this.router.navigate(['/auth/compte']);
   }

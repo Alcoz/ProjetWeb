@@ -16,7 +16,7 @@ export class BiensService implements OnInit {
   }
 
   getServices(param):Observable<any>{
-    return this.http.get<any>(this.url + "serviceParam?nom=" + param);
+    return this.http.get<any>(this.url + "serviceParam?descriptif=" + param);
   }
 
   getBiensMotClef(param):Observable<any>{
@@ -43,7 +43,7 @@ export class BiensService implements OnInit {
   getServicesUtilisateur(param):Observable<any>{
       return this.http.get<any>(this.url + "servicesProp?mailProp=" + param);
   }
-  
+
   supprimerService(param):Observable<any>{
       console.log(param);
       return this.http.get<any>(this.url + "serviceSupp?_id=" + param);
@@ -59,9 +59,21 @@ export class BiensService implements OnInit {
 
   ajouterBienUtilisateur(param){
     console.log(param);
-    return this.http.get<any>(this.url + "biensAjout?nom=" + param.nom + "&descriptif=" + param.descriptif + "&prix=" 
+    return this.http.get<any>(this.url + "biensAjout?descriptif=" + param.descriptif + "&prix="
       + param.prix + "&motClef=" + param.motClef + "&mailProp=" + param.mailProp);
   }
+
+  ajouterServiceUtilisateur(param){
+    return this.http.get<any>(this.url + "serviceAjout?nom=" + param.nom + "&descriptif=" + param.descriptif + "&prix="
+      + param.prix + "&motClef=" + param.motClef + "&mailProp=" + param.mailProp);
+  }
+
+
+  ajouterDatesUtilisateur(param){
+    return this.http.get<any>(this.url + "disponibilitesAjout?idBienOuService=" + param.idBienOuService + "&bienOuService=" + param.bienOuService + "&dateDebut=" + param.dateDebut
+    + "&dateFin=" + param.dateFin);
+  }
+
 
   getMembres(){
     return this.http.get<any>(this.url + "membres");
@@ -81,7 +93,7 @@ export class BiensService implements OnInit {
 
   avertissementSuppr(param){
     return this.http.get<any>(this.url + "suppAvertissement?_id=" + param);
-  }  
+  }
 
   ajouterDates(dateDebut, dateFin){
     return this.http.get<any>(this.url + "avertissement?dateDebut=" + dateDebut + "&dateFin=" + dateFin);

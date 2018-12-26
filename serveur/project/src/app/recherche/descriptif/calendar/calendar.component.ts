@@ -22,14 +22,16 @@ export class CalendarComponent implements OnInit {
   ajoutDate(){
   	if(this.tableauDate.length < 2){
   		this.tableauDate.push(this.date);
-  	}
+      let infos = {
+        dateDebut : this.tableauDate[0],
+        dateFin : this.tableauDate[1]
+      }
+      localStorage.setItem('dates', JSON.stringify(infos));
   }
+}
 
   supprimer(){
     this.tableauDate.pop();
   }
 
-  getDates(){
-    return this.tableauDate;
-  }
 }
